@@ -28,9 +28,9 @@
                 <td>
                     @Html.DisplayFor(r => recipe.Name)
                 </td>                
-                <th>
+                <td>
                     <img src="data:image/jpg;base64,@recipe.ImageData" width="300px" height="200px"></img>
-                </th>
+                </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@recipe.Id">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@recipe.Id">Details</a> |
