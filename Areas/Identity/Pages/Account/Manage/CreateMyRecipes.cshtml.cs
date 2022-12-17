@@ -47,12 +47,12 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         }
 
         [HttpPost]
-        public void OnPostAsync()
+        public ActionResult OnPost()
         {
             var currentUserId = _manager.GetUserId(User);
             if (!ModelState.IsValid)
             {
-                return;
+                return Page();
             }
 
             byte[] bytes = null;
@@ -78,7 +78,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             _context.RecipeItems.Add(RecipeItem);
             _context.SaveChanges();
 
-            //return RedirectToPage("./CheckMyRecipes");
+            return RedirectToPage("./CheckMyRecipes");
         }
     }
 }
