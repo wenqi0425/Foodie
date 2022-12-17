@@ -1,8 +1,13 @@
 using Foodie.Models;
+using Foodie.Services.EFServices;
+using Foodie.Services.Interfaces;
+
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +34,9 @@ namespace Foodie
             services.AddDbContext<AppDbContext>(options =>
                options.UseSqlServer(
                    Configuration.GetConnectionString("LocalConnection")));
+
+            services.AddTransient<IRecipeService, EFRecipeService>();
+            services.AddTransient<IRecipeItemService, EFRecipeItemService>();            
 
             services.AddRazorPages();
 

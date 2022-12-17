@@ -18,9 +18,10 @@ namespace Foodie.Models
         [Display(Name = "Recipe Name:")]
         public string Name { get; set; }
 
+        /*
         [Required]
         [Display(Name = "Recipe Items:")]
-        public ICollection<RecipeItem> RecipeItems { get; set; }
+        public ICollection<RecipeItem> RecipeItems { get; set; }*/
 
         [Required]
         [Display(Name = "Cooking Steps:")]

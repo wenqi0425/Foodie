@@ -1,6 +1,9 @@
 ﻿using Foodie.Models;
 using Foodie.Services.Interfaces;
 
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 using System.Collections.Generic;
@@ -8,11 +11,13 @@ using System.Linq;
 
 namespace Foodie.Services.EFServices
 {
-    public class EFRecipeService : IRecipeService
+    public class EFWrapperService : IWrapperService
     {
         AppDbContext _context;
 
-        public EFRecipeService(AppDbContext context)
+        [BindProperty] public Wrapper WrapperData { get; set; }
+
+        public EFWrapperService(AppDbContext context)
         {
             _context = context;
         }
@@ -23,15 +28,33 @@ namespace Foodie.Services.EFServices
             _context.SaveChanges();
         }
 
+        public void AddRecipeItems(RecipeItem recipeItem)
+        {
+            _context.RecipeItems.Add(recipeItem);
+            _context.SaveChanges();
+        }
+
         public void DeleteRecipe(Recipe recipe)
         {
             _context.Recipes.Remove(recipe);
             _context.SaveChanges();
         }
 
+        public void DeleteRecipeItem(RecipeItem recipeItem)
+        {
+            _context.RecipeItems.Remove(recipeItem);
+            _context.SaveChanges();
+        }
+
         public void EditRecipe(Recipe recipe)
         {
             _context.Recipes.Update(recipe);
+            _context.SaveChanges();
+        }
+
+        public void EditRecipeItem(RecipeItem recipeItem)
+        {
+            _context.RecipeItems.Update(recipeItem);
             _context.SaveChanges();
         }
 

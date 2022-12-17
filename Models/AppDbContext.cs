@@ -28,5 +28,8 @@ namespace Foodie.Models
         {
             base.OnModelCreating(builder);            
         }
+
+        //  only derived class can visit it
+        public DbSet<Foodie.Models.Wrapper> Wrapper { get; set; }
     }
 }
