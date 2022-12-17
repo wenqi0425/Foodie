@@ -13,7 +13,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public static string Index => "Index";
         public static string Email => "Email";
         public static string ChangePassword => "ChangePassword";   
-        public static string CheckMyRecipes => "CheckMyRecipes";
+        public static string CheckMyRecipes => "CheckMyRecipesModel";
         public static string CreateMyRecipes => "CreateMyRecipes";
         public static string CheckMyRecipesNavClass(ViewContext viewContext) => PageNavClass(viewContext, CheckMyRecipes);
         public static string CreateMyRecipesNavClass(ViewContext viewContext) => PageNavClass(viewContext, CreateMyRecipes);

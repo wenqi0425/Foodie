@@ -1,5 +1,5 @@
 ﻿@page
-@model Foodie.Areas.Identity.Pages.Account.Manage.CreateMyRecipesModel
+@model Foodie.Areas.Identity.Pages.Account.Manage.CheckMyRecipesModel
 @{
     ViewData["Title"] = "My Recipes";
     ViewData["ActivePage"] = ManageNavPages.CheckMyRecipes;
@@ -9,6 +9,37 @@
 <p>
     <a asp-page="./CreateMyRecipes">Create New Recipe</a>
 </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe.Name)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe.ImageData)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model.MyRecipes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(r => recipe.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(r => recipe.ImageData)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@recipe.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@recipe.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@recipe.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 
 

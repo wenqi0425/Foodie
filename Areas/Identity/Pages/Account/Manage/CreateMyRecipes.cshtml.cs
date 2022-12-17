@@ -78,7 +78,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             _context.RecipeItems.Add(RecipeItem);
             _context.SaveChanges();
 
-            return RedirectToPage("./CheckMyRecipes");
+            return RedirectToPage("./CheckMyRecipesModel");
         }
     }
 }

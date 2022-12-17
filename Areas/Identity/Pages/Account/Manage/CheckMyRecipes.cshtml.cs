@@ -10,19 +10,18 @@ using System.Threading.Tasks;
 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
 {
-    public class CheckMyRecipes : PageModel
+    public class CheckMyRecipesModel : PageModel
     {
+        private UserManager<AppUser> _manager;
+
+        private IRecipeService _recipeService;
+        public IEnumerable<Recipe> MyRecipes;
         public Recipe Recipe { get; set; }
-        public RecipeItem RecipeItem { get; set; }
 
-        public UserManager<AppUser> _manager;
-        public IRecipeService _recipeService;
-        public IEnumerable<Recipe> _myRecipesList;
+        private IRecipeItemService _recipeItemService;
+        public IEnumerable<RecipeItem> RecipesOfOneRecipe;
 
-        public IRecipeItemService _recipeItemService;
-        public IEnumerable<RecipeItem> _recipesOfOneRecipe;
-
-        public CheckMyRecipes(UserManager<AppUser> manager, IRecipeService recipeService, IRecipeItemService itemService)
+        public CheckMyRecipesModel(UserManager<AppUser> manager, IRecipeService recipeService, IRecipeItemService itemService)
         {
             _recipeService = recipeService;
             _recipeItemService = itemService;
@@ -32,7 +31,8 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public async Task OnGet()
         {
             AppUser user = await _manager.GetUserAsync(User);
-            _myRecipesList = _recipeService.GetRecipesByUser(user);
+            MyRecipes = _recipeService.GetRecipesByUser(user);
+            RecipesOfOneRecipe = _recipeItemService.GetRecipeItemsByRecipe(Recipe);
         }
     }
 }
