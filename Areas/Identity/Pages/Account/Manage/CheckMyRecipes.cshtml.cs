@@ -4,6 +4,7 @@ using Foodie.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,13 +19,13 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public IEnumerable<Recipe> MyRecipes;
         public Recipe Recipe { get; set; }
 
-        private IRecipeItemService _recipeItemService;
-        public IEnumerable<RecipeItem> RecipesOfOneRecipe;
+        // private IRecipeItemService _recipeItemService;
+        //public IEnumerable<RecipeItem> ItemsOfOneRecipe;
 
-        public CheckMyRecipesModel(UserManager<AppUser> manager, IRecipeService recipeService, IRecipeItemService itemService)
+        public CheckMyRecipesModel(UserManager<AppUser> manager, IRecipeService recipeService/*, IRecipeItemService itemService*/)
         {
             _recipeService = recipeService;
-            _recipeItemService = itemService;
+            //_recipeItemService = itemService;
             _manager = manager;
         }
 
@@ -32,7 +33,8 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         {
             AppUser user = await _manager.GetUserAsync(User);
             MyRecipes = _recipeService.GetRecipesByUser(user);
-            RecipesOfOneRecipe = _recipeItemService.GetRecipeItemsByRecipe(Recipe);
+            //ItemsOfOneRecipe = _recipeItemService.GetRecipeItemsByRecipe(Recipe);
+           
         }
     }
 }
