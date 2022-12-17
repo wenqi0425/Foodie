@@ -9,11 +9,11 @@ using Foodie.Models;
 
 namespace Foodie.Pages.Recipes
 {
-    public class IndexModel : PageModel
+    public class GetAllRecipesModel : PageModel
     {
         private readonly AppDbContext _context;
 
-        public IndexModel(AppDbContext context)
+        public GetAllRecipesModel(AppDbContext context)
         {
             _context = context;
         }

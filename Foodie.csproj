@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\" />
     <Folder Include="Pages\Administration\" />
     <Folder Include="Pages\RecipeItems\" />
   </ItemGroup>
