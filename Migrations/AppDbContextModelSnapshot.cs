@@ -141,12 +141,12 @@ namespace Foodie.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("Id");
 
                     b.ToTable("RecipeItems");
                 });
@@ -294,7 +294,7 @@ namespace Foodie.Migrations
                 {
                     b.HasOne("Foodie.Models.Recipe", "Recipe")
                         .WithMany("RecipeItems")
-                        .HasForeignKey("RecipeId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

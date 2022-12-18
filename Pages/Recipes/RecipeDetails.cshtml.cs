@@ -6,35 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Foodie.Models;
+using Foodie.Services.Interfaces;
 
 namespace Foodie.Pages.Recipes
 {
-    public class DetailsModel : PageModel
+    [BindProperties]
+    public class RecipeDetailsModel : PageModel
     {
-        private readonly Foodie.Models.AppDbContext _context;
+        private IRecipeService _recipeService;
+        private IRecipeItemService _recipeItemService;
+        private AppDbContext _context;
 
-        public DetailsModel(Foodie.Models.AppDbContext context)
+        public RecipeDetailsModel(IRecipeService recipeService, IRecipeItemService recipeItemService, AppDbContext context)
         {
+            _recipeService = recipeService;
+            _recipeItemService = recipeItemService;
             _context = context;
         }
 
+        public RecipeItem RecipeItem { get; set; }
         public Recipe Recipe { get; set; }
+        public IList<RecipeItem> RecipeItems { get; set; }
+        public IList<Recipe> Recipes { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task OnGetAsync(int recipeId) // must be the same as the asp-route-recipeId
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Recipe = await _context.Recipes
-                .Include(r => r.User).FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Recipe == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            Recipe = _recipeService.GetRecipeById(recipeId);
+            RecipeItems = _recipeItemService.GetRecipeItemsByRecipeId(recipeId).ToList();
         }
     }
 }

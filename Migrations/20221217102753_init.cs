@@ -243,7 +243,7 @@ namespace Foodie.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeItems_RecipeId",
                 table: "RecipeItems",
-                column: "RecipeId");
+                column: "Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Recipes_UserId",

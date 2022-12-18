@@ -8,6 +8,6 @@ namespace Foodie.Services.Interfaces
         void AddRecipeItem(RecipeItem recipe);
         void DeleteRecipeItem(RecipeItem recipe);
         void EditRecipeItem(RecipeItem recipe);
-        IEnumerable<RecipeItem> GetRecipeItemsByRecipe(Recipe recipe);
+        IEnumerable<RecipeItem> GetRecipeItemsByRecipeId(int recipeId);
     }
 }

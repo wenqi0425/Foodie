@@ -36,7 +36,7 @@ namespace Foodie.Pages.RecipeItems
             {
                 return NotFound();
             }
-           ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "CookingSteps");
+           ViewData["Id"] = new SelectList(_context.Recipes, "Id", "CookingSteps");
             return Page();
         }
 

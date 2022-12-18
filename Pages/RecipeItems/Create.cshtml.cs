@@ -20,7 +20,7 @@ namespace Foodie.Pages.RecipeItems
 
         public IActionResult OnGet()
         {
-        ViewData["RecipeId"] = new SelectList(_context.Recipes, "Id", "CookingSteps");
+        ViewData["Id"] = new SelectList(_context.Recipes, "Id", "CookingSteps");
             return Page();
         }
 

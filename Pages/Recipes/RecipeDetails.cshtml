@@ -1,14 +1,17 @@
-﻿@page
-@model Foodie.Pages.Recipes.DetailsModel
+﻿@page 
+@using Foodie.Models;
+@using Foodie.Services.Interfaces;
+@model Foodie.Pages.Recipes.RecipeDetailsModel
+@inject IRecipeService RecipeService;
+@inject IRecipeItemService RecipeItemService;
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Recipe Details</h1>
 
 <div>
-    <h4>Recipe</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -17,6 +20,21 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Recipe.Name)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RecipeItem.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RecipeItem.Name)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RecipeItem.Amount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RecipeItem.Amount)
+        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Recipe.CookingSteps)
         </dt>
@@ -31,19 +49,9 @@
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Recipe.ImageData)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.ImageData)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.User)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.User.Id)
-        </dd>
+        </dt>       
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Recipe.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

@@ -34,10 +34,10 @@ namespace Foodie.Services.EFServices
             _context.SaveChanges();
         }
 
-        public IEnumerable<RecipeItem> GetRecipeItemsByRecipe(Recipe recipe)
+        public IEnumerable<RecipeItem> GetRecipeItemsByRecipeId(int recipeId)
         {
             IEnumerable<RecipeItem> recipeItems = _context.RecipeItems
-                .Where(i => i.Recipe == recipe).ToList();
+                .Where(item => item.RecipeId == recipeId).ToList();
 
             return recipeItems;
         }
