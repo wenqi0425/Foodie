@@ -21,19 +21,22 @@
             @Html.DisplayFor(model => model.Recipe.Name)
         </dd>
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RecipeItems[0].Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RecipeItems[0].Name)
-        </dd>
+        @foreach (var item in Model.RecipeItems)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(modelItem => item.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.Name)
+            </dd>
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RecipeItems[0].Amount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RecipeItems[0].Amount)
-        </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(modelItem => item.Amount)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.Amount)
+            </dd>
+        }            
 
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Recipe.CookingSteps)
