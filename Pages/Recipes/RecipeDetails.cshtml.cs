@@ -15,19 +15,16 @@ namespace Foodie.Pages.Recipes
     {
         private IRecipeService _recipeService;
         private IRecipeItemService _recipeItemService;
-        private AppDbContext _context;
 
-        public RecipeDetailsModel(IRecipeService recipeService, IRecipeItemService recipeItemService, AppDbContext context)
+        public RecipeDetailsModel(IRecipeService recipeService, IRecipeItemService recipeItemService)
         {
             _recipeService = recipeService;
             _recipeItemService = recipeItemService;
-            _context = context;
         }
 
         public RecipeItem RecipeItem { get; set; }
         public Recipe Recipe { get; set; }
         public IList<RecipeItem> RecipeItems { get; set; }
-        public IList<Recipe> Recipes { get; set; }
 
         public async Task OnGetAsync(int recipeId) // must be the same as the asp-route-recipeId
         {

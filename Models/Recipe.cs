@@ -17,7 +17,7 @@ namespace Foodie.Models
         [Required]
         [Display(Name = "Recipe Name:")]
         public string Name { get; set; }
-
+        
         /*
         [Required]
         [Display(Name = "Recipe Items:")]

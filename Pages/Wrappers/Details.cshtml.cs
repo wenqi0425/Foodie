@@ -11,9 +11,9 @@ namespace Foodie.Pages.Wrappers
 {
     public class DetailsModel : PageModel
     {
-        private readonly Foodie.Models.AppDbContext _context;
+        private readonly AppDbContext _context;
 
-        public DetailsModel(Foodie.Models.AppDbContext context)
+        public DetailsModel(AppDbContext context)
         {
             _context = context;
         }
