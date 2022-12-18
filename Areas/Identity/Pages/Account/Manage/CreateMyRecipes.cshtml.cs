@@ -23,7 +23,6 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
 
         private UserManager<AppUser> _manager;
         private IRecipeService _recipeService;
-        public List<Recipe> MyRecipes;
 
         public IRecipeItemService _recipeItemService;
         public List<RecipeItem> RecipeItemsOfOneRecipe;
@@ -36,11 +35,11 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             _recipeService = recipeService;
             _recipeItemService = recipeItemService;
             _manager = manager;
-            _recipeItemService = recipeItemService;
             _context = context;
         }
-        public IActionResult OnGet()
+        public IActionResult OnGet(int recipeId)
         {
+            Recipe = _recipeService.GetRecipeById(recipeId);
             return Page();
         }
 
@@ -76,7 +75,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             _context.RecipeItems.Add(RecipeItem);
             _context.SaveChanges();
 
-            return RedirectToPage("./CheckMyRecipesModel");
+            return RedirectToPage("./CheckMyRecipes");
         }
     }
 }

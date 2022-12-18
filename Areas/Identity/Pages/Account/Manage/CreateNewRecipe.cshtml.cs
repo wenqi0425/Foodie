@@ -5,41 +5,35 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-using System.Collections.Generic;
-
-using System.IO;
-
 using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
 {
-    public class CreateRecipeItemModel : PageModel
+    [BindProperties]
+    public class CreateNewRecipeModel : PageModel
     {
-        [BindProperty] public Recipe Recipe { get; set; }
-        [BindProperty] public RecipeItem RecipeItem { get; set; }
-
+        public Recipe Recipe { get; set; }
         public AppUser AppUser { get; set; }
         public string Message { get; set; }
 
         private UserManager<AppUser> _manager;
         private IRecipeService _recipeService;
-        private IRecipeItemService _recipeItemService;
-        public List<RecipeItem> RecipesItemsOfOneRecipe;
+        public List<Recipe> MyRecipes;
 
         AppDbContext _context;
 
-        public CreateRecipeItemModel(UserManager<AppUser> manager, IRecipeService recipeService,
-            IRecipeItemService recipeItemService, AppDbContext context)
+        public CreateNewRecipeModel(UserManager<AppUser> manager, IRecipeService recipeService,
+            AppDbContext context)
         {
             _recipeService = recipeService;
-            _recipeItemService = recipeItemService;
             _manager = manager;
-            _recipeItemService = recipeItemService;
             _context = context;
         }
         public IActionResult OnGet()
-        {                       
+        {
             return Page();
         }
 
@@ -56,11 +50,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             var pesistedReceipe = _context.Recipes.Add(Recipe);
             _context.SaveChanges();
 
-            RecipeItem.RecipeId = pesistedReceipe.Entity.Id;
-            _context.RecipeItems.Add(RecipeItem);
-            _context.SaveChanges();
-
-            return RedirectToPage("./CreateMyRecipes");
+            return RedirectToPage("./CheckMyRecipes");
         }
     }
 }

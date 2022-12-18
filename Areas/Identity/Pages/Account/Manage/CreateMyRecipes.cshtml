@@ -1,5 +1,4 @@
-﻿@page
-@using Foodie.Models;
+﻿@page 
 @using Foodie.Services.Interfaces;
 @inject IRecipeService RecipeService;
 @inject IRecipeItemService RecipeItemService;
@@ -14,12 +13,11 @@
 </div>
 <br />
 
-<h3> Create New Recipes</h3>
+<h3> Edit Recipe </h3>
 <br />
 
 <div class="col-md-4">
     <form asp-action="Create" method="post" enctype="multipart/form-data">
-
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Recipe.Name" class="control-label"></label>
@@ -27,65 +25,58 @@
             <span asp-validation-for="Recipe.Name" class="text-danger"></span>
         </div>
 
-        <div>
-            <a asp-page="./CreateRecipeItem">CreateRecipeItem</a>
-        </div>
+        <p>Please Add Ingredients and Amount </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Ingredient</th>
+                    <th> Amout</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input asp-for="RecipeItem.Name" class="form-control" /></td>
+                    <td><input asp-for="RecipeItem.Amount" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td><input asp-for="RecipeItem.Name" class="form-control" /></td>
+                    <td><input asp-for="RecipeItem.Amount" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td><input asp-for="RecipeItem.Name" class="form-control" /></td>
+                    <td><input asp-for="RecipeItem.Amount" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td><input asp-for="RecipeItem.Name" class="form-control" /></td>
+                    <td><input asp-for="RecipeItem.Amount" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td><input asp-for="RecipeItem.Name" class="form-control" /></td>
+                    <td><input asp-for="RecipeItem.Amount" class="form-control" /></td>
+                </tr>
+            </tbody>
+        </table>     
 
-         @if (Model.RecipeItemsOfOneRecipe != null)
-        {
-            @foreach (var item in Model.RecipeItemsOfOneRecipe)
-            {
-            <dt class="col-sm-2">
-                    @Html.DisplayNameFor(modelItem => item.Name)
-            </dt>
-            <dd class="col-sm-10">
-                    @Html.DisplayFor(modelItem => item.Name)
-            </dd>
-
-            <dt class="col-sm-2">
-                    @Html.DisplayNameFor(modelItem => item.Amount)
-            </dt>
-            <dd class="col-sm-10">
-                    @Html.DisplayFor(modelItem => item.Amount)
-            </dd>
-            }
-        }       
-
-    <!--
-        <div>
         <div class="form-group">
-            <label asp-for="RecipeItem.Name" class="control-label"></label>
-            <input asp-for="RecipeItem.Name" class="form-control" />
-            <span asp-validation-for="RecipeItem.Name" class="text-danger"></span>
+            <label asp-for="Recipe.CookingSteps" class="control-label"></label>
+            <textarea asp-for="Recipe.CookingSteps" class="form-control rounded-border" rows="8"></textarea>
+            <span asp-validation-for="Recipe.CookingSteps" class="text-danger"></span>
         </div>
+
         <div class="form-group">
-            <label asp-for="RecipeItem.Amount" class="control-label"></label>
-            <input asp-for="RecipeItem.Amount" class="form-control" />
-            <span asp-validation-for="RecipeItem.Amount" class="text-danger"></span>
+            <label asp-for="Recipe.Introduction" class="control-label"></label>
+            <textarea asp-for="Recipe.Introduction" class="form-control rounded-border" rows="5"></textarea>
+            <div asp-validation-summary="All" class="text-secondary"></div>
         </div>
-    </div>
-    -->
 
-    <div class="form-group">
-        <label asp-for="Recipe.CookingSteps" class="control-label"></label>
-        <textarea asp-for="Recipe.CookingSteps" class="form-control rounded-border" rows="8"></textarea>
-        <span asp-validation-for="Recipe.CookingSteps" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="Recipe.ImageFile" class="control-label"></label>
+            <input type="file" asp-for="Recipe.ImageFile" class="form-control" />
+            <span asp-validation-for="Recipe.ImageFile" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="Recipe.Introduction" class="control-label"></label>
-        <textarea asp-for="Recipe.Introduction" class="form-control rounded-border" rows="5"></textarea>
-        <div asp-validation-summary="All" class="text-secondary"></div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Recipe.ImageFile" class="control-label"></label>
-        <input type="file" asp-for="Recipe.ImageFile" class="form-control" />
-        <span asp-validation-for="Recipe.ImageFile" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
     </form>
 </div>

@@ -45,7 +45,7 @@ namespace Foodie
                 //options.SignIn.RequireConfirmedAccount = true;
             })
                 .AddEntityFrameworkStores<AppDbContext>()
-                //.AddDefaultTokenProviders()
+                .AddDefaultTokenProviders()
                 .AddRoles<IdentityRole<int>>()
                 .AddDefaultUI();
 

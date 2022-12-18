@@ -19,6 +19,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Recipe.ImageData)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe.Id)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +35,10 @@
                     <img src="data:image/jpg;base64,@recipe.ImageData" width="300px" height="200px"></img>
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@recipe.Id">Edit</a> |
+                    @Html.DisplayFor(r => recipe.Id)
+                </td>
+                <td>
+                    <a asp-page="./CreateMyRecipes" asp-route-recipeId="@recipe.Id">Edit</a> |
                     <a asp-page="/Recipes/RecipeDetails" asp-route-recipeId="@recipe.Id">Details</a> |
                     <a asp-page="./Delete" asp-route-id="@recipe.Id">Delete</a>
                 </td>

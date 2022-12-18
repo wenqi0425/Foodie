@@ -15,8 +15,10 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public static string ChangePassword => "ChangePassword";   
         public static string CheckMyRecipes => "CheckMyRecipesModel";
         public static string CreateMyRecipes => "CreateMyRecipes";
+        public static string CreateNewRecipe => "CreateNewRecipe";
         public static string CheckMyRecipesNavClass(ViewContext viewContext) => PageNavClass(viewContext, CheckMyRecipes);
         public static string CreateMyRecipesNavClass(ViewContext viewContext) => PageNavClass(viewContext, CreateMyRecipes);
+        public static string CreateNewRecipeNavClass(ViewContext viewContext) => PageNavClass(viewContext, CreateNewRecipe);
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
         public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);

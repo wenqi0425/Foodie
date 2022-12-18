@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foodie.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221217102753_init")]
+    [Migration("20221218132629_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,11 +46,9 @@ namespace Foodie.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -107,7 +105,6 @@ namespace Foodie.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CookingSteps")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageData")
@@ -145,14 +142,36 @@ namespace Foodie.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("RecipeItems");
+                });
+
+            modelBuilder.Entity("Foodie.Models.Wrapper", b =>
+                {
+                    b.Property<int>("WrapperId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RecipeItemId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WrapperId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("RecipeItemId");
+
+                    b.ToTable("Wrapper");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -298,9 +317,20 @@ namespace Foodie.Migrations
                 {
                     b.HasOne("Foodie.Models.Recipe", "Recipe")
                         .WithMany("RecipeItems")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Foodie.Models.Wrapper", b =>
+                {
+                    b.HasOne("Foodie.Models.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId");
+
+                    b.HasOne("Foodie.Models.RecipeItem", "RecipeItem")
+                        .WithMany()
+                        .HasForeignKey("RecipeItemId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

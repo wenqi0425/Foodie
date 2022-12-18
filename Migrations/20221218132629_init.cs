@@ -42,8 +42,8 @@ namespace Foodie.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
                     AboutMe = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -164,7 +164,7 @@ namespace Foodie.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
-                    CookingSteps = table.Column<string>(nullable: false),
+                    CookingSteps = table.Column<string>(nullable: true),
                     Introduction = table.Column<string>(nullable: true),
                     ImageData = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false)
@@ -199,6 +199,32 @@ namespace Foodie.Migrations
                         principalTable: "Recipes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Wrapper",
+                columns: table => new
+                {
+                    WrapperId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(nullable: true),
+                    RecipeItemId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Wrapper", x => x.WrapperId);
+                    table.ForeignKey(
+                        name: "FK_Wrapper_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Wrapper_RecipeItems_RecipeItemId",
+                        column: x => x.RecipeItemId,
+                        principalTable: "RecipeItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -243,12 +269,22 @@ namespace Foodie.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeItems_RecipeId",
                 table: "RecipeItems",
-                column: "Id");
+                column: "RecipeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Recipes_UserId",
                 table: "Recipes",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wrapper_RecipeId",
+                table: "Wrapper",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wrapper_RecipeItemId",
+                table: "Wrapper",
+                column: "RecipeItemId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -269,10 +305,13 @@ namespace Foodie.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "RecipeItems");
+                name: "Wrapper");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "RecipeItems");
 
             migrationBuilder.DropTable(
                 name: "Recipes");
