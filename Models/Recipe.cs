@@ -17,9 +17,6 @@ namespace Foodie.Models
         [Required]
         [Display(Name = "Recipe Name:")]
         public string Name { get; set; }
-        
-        [Display(Name = "Recipe Items:")]
-        public ICollection<RecipeItem> RecipeItems { get; set; }
 
         [Display(Name = "Cooking Steps:")]
         public string CookingSteps { get; set; }        
@@ -38,5 +35,6 @@ namespace Foodie.Models
 
         // Navigation Properties
         public AppUser User { get; set; }
+        public ICollection<RecipeItem> RecipeItems { get; set; }
     }
 }
