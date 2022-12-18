@@ -38,7 +38,7 @@
                     @Html.DisplayFor(r => recipe.Id)
                 </td>
                 <td>
-                    <a asp-page="./CreateMyRecipes" asp-route-recipeId="@recipe.Id">Edit</a> |
+                    <a asp-page="./EditRecipe" asp-route-recipeId="@recipe.Id">Edit</a> |
                     <a asp-page="/Recipes/RecipeDetails" asp-route-recipeId="@recipe.Id">Details</a> |
                     <a asp-page="./Delete" asp-route-id="@recipe.Id">Delete</a>
                 </td>
