@@ -12,33 +12,31 @@ using System.Threading.Tasks;
 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
 {
+    [BindProperties]
     public class CreateMyRecipesModel : PageModel
     {
-        [BindProperty] public Recipe Recipe { get; set; }
-        [BindProperty] public RecipeItem RecipeItem { get; set; }
+        public Recipe Recipe { get; set; }
+        public RecipeItem RecipeItem { get; set; }
         
-        public AppUser appUser { get; set; }
+        public AppUser AppUser { get; set; }
         public string Message { get; set; }
 
-        public UserManager<AppUser> _manager;
-        public IRecipeService _recipeService;
-        public IEnumerable<Recipe> _myRecipesList;
+        private UserManager<AppUser> _manager;
+        private IRecipeService _recipeService;
+        public List<Recipe> MyRecipes;
 
         public IRecipeItemService _recipeItemService;
-        public IEnumerable<RecipeItem> _recipesOfOneRecipe;
+        public List<RecipeItem> RecipeItemsOfOneRecipe;
 
         AppDbContext _context;
 
         public CreateMyRecipesModel(UserManager<AppUser> manager, IRecipeService recipeService, 
-            IRecipeItemService recipeItemService, IEnumerable<Recipe> myRecipesList, 
-            IEnumerable<RecipeItem> recipesOfOneRecipe, AppDbContext context)
+            IRecipeItemService recipeItemService, AppDbContext context)
         {
             _recipeService = recipeService;
             _recipeItemService = recipeItemService;
             _manager = manager;
-            _myRecipesList = myRecipesList;
             _recipeItemService = recipeItemService;
-            _recipesOfOneRecipe = recipesOfOneRecipe;
             _context = context;
         }
         public IActionResult OnGet()

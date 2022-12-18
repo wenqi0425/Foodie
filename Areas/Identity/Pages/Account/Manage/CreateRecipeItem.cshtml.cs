@@ -18,13 +18,13 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         [BindProperty] public Recipe Recipe { get; set; }
         [BindProperty] public RecipeItem RecipeItem { get; set; }
 
-        public AppUser appUser { get; set; }
+        public AppUser AppUser { get; set; }
         public string Message { get; set; }
 
-        public UserManager<AppUser> _manager;
-        public IRecipeService _recipeService;
-        public IRecipeItemService _recipeItemService;
-        public IEnumerable<RecipeItem> _recipesItemsOfOneRecipe;
+        private UserManager<AppUser> _manager;
+        private IRecipeService _recipeService;
+        private IRecipeItemService _recipeItemService;
+        public List<RecipeItem> RecipesItemsOfOneRecipe;
 
         AppDbContext _context;
 
