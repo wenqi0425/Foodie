@@ -4,8 +4,13 @@
     ViewData["Title"] = "My Recipes";
     ViewData["ActivePage"] = ManageNavPages.CreateMyRecipes;
 }
+<div>
+    <a asp-page="./CheckMyRecipes">Back to List</a>
+</div>
+<br />
 
 <h3> Create New Recipes</h3>
+<br />
 
 <div class="col-md-4">
     <form asp-action="Create" method="post" enctype="multipart/form-data">
