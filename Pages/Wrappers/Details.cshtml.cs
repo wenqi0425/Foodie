@@ -9,6 +9,7 @@ using Foodie.Models;
 
 namespace Foodie.Pages.Wrappers
 {
+    /*
     public class DetailsModel : PageModel
     {
         private readonly AppDbContext _context;
@@ -35,5 +36,5 @@ namespace Foodie.Pages.Wrappers
             }
             return Page();
         }
-    }
+    }*/
 }

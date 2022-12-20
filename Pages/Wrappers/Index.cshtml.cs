@@ -9,6 +9,7 @@ using Foodie.Models;
 
 namespace Foodie.Pages.Wrappers
 {
+    /*
     public class IndexModel : PageModel
     {
         private readonly AppDbContext _context;
@@ -24,5 +25,5 @@ namespace Foodie.Pages.Wrappers
         {
             Wrapper = await _context.Wrapper.ToListAsync();
         }
-    }
+    }*/
 }

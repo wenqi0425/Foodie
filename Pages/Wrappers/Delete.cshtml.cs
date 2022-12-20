@@ -9,6 +9,7 @@ using Foodie.Models;
 
 namespace Foodie.Pages.Wrappers
 {
+    /*
     public class DeleteModel : PageModel
     {
         private readonly Foodie.Models.AppDbContext _context;
@@ -54,5 +55,5 @@ namespace Foodie.Pages.Wrappers
 
             return RedirectToPage("./Index");
         }
-    }
+    }*/
 }

@@ -10,6 +10,7 @@ using Foodie.Models;
 
 namespace Foodie.Pages.Wrappers
 {
+    /*
     public class EditModel : PageModel
     {
         private readonly Foodie.Models.AppDbContext _context;
@@ -72,5 +73,5 @@ namespace Foodie.Pages.Wrappers
         {
             return _context.Wrapper.Any(e => e.WrapperId == id);
         }
-    }
+    }*/
 }

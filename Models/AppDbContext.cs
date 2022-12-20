@@ -30,6 +30,6 @@ namespace Foodie.Models
         }
 
         //  only derived class can visit it
-        public DbSet<Foodie.Models.Wrapper> Wrapper { get; set; }
+        // public DbSet<Foodie.Models.Wrapper> Wrapper { get; set; }
     }
 }
