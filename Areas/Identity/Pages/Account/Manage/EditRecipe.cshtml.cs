@@ -72,7 +72,6 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
                     if (i == 2) { RecipeItem3 = RecipeItemsOfOneRecipe.ElementAt(i); }
                     if (i == 3) { RecipeItem4 = RecipeItemsOfOneRecipe.ElementAt(i); }
                     if (i == 4) { RecipeItem5 = RecipeItemsOfOneRecipe.ElementAt(i); }
-
                     //items[i] = RecipeItemsOfOneRecipe.ElementAt(i);
                 }
             }
