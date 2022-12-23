@@ -10,52 +10,42 @@
 }
 
 <h1>Recipe Details</h1>
+<br />
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.Name)
-        </dd>
+<h3>@Html.DisplayFor(model => model.Recipe.Name)</h3>
+<img src="data:image/jpg;base64,@Model.Recipe.ImageData" width="600px" height="400px"></img>
+<br />
+<br />
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th> Ingredient</th>
-                    <th> Amout</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.RecipeItems)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Amount)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<h4>Ingredients</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th> Ingredient</th>
+            <th> Amout</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.RecipeItems)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.CookingSteps)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.CookingSteps)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Recipe.Introduction)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Recipe.Introduction)
-        </dd>
-        <td>
-            <img src="data:image/jpg;base64,@Model.Recipe.ImageData" width="150px" height="100px"></img>
-        </td>
-    </dl>
-</div>
+<h4>Cooking Steps</h4>
+@Html.DisplayFor(model => model.Recipe.CookingSteps)
+
+<br /> <br />
+
+<h4>Introduction</h4>
+@Html.DisplayFor(model => model.Recipe.Introduction)
+
+<br /><br />
+
 <div>
     <a asp-page="/Recipes/GetAllRecipes">Back to List</a>
 </div>
