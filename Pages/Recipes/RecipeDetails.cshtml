@@ -1,4 +1,4 @@
-﻿@page 
+﻿@page
 @using Foodie.Models;
 @using Foodie.Services.Interfaces;
 @model Foodie.Pages.Recipes.RecipeDetailsModel
@@ -21,22 +21,23 @@
             @Html.DisplayFor(model => model.Recipe.Name)
         </dd>
 
-        @foreach (var item in Model.RecipeItems)
-        {
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(modelItem => item.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.Name)
-            </dd>
-
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(modelItem => item.Amount)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => item.Amount)
-            </dd>
-        }            
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Ingredient</th>
+                    <th> Amout</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecipeItems)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Recipe.CookingSteps)
