@@ -6,9 +6,6 @@
 }
 
 <h3> My Recipes</h3>
-<p>
-    <a asp-page="./CreateMyRecipes">Create New Recipe</a>
-</p>
 
 <table class="table">
     <thead>
@@ -40,7 +37,7 @@
                 <td>
                     <a asp-page="./EditRecipe" asp-route-recipeId="@recipe.Id">Edit</a> |
                     <a asp-page="/Recipes/RecipeDetails" asp-route-recipeId="@recipe.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@recipe.Id">Delete</a>
+                    <a asp-page="./DeleteMyRecipe" asp-route-recipeId="@recipe.Id">Delete</a>
                 </td>
             </tr>
         }

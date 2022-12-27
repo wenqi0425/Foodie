@@ -10,11 +10,11 @@ using Foodie.Models;
 namespace Foodie.Pages.Wrappers
 {
     /*
-    public class DeleteModel : PageModel
+    public class DeleteRecipeModel : PageModel
     {
         private readonly Foodie.Models.AppDbContext _context;
 
-        public DeleteModel(Foodie.Models.AppDbContext context)
+        public DeleteRecipeModel(Foodie.Models.AppDbContext context)
         {
             _context = context;
         }

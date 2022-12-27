@@ -19,22 +19,16 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public IEnumerable<Recipe> MyRecipes;
         public Recipe Recipe { get; set; }
 
-        // private IRecipeItemService _recipeItemService;
-        //public IEnumerable<RecipeItem> ItemsOfOneRecipe;
-
-        public CheckMyRecipesModel(UserManager<AppUser> manager, IRecipeService recipeService/*, IRecipeItemService itemService*/)
+        public CheckMyRecipesModel(UserManager<AppUser> manager, IRecipeService recipeService)
         {
             _recipeService = recipeService;
-            //_recipeItemService = itemService;
             _manager = manager;
         }
 
         public async Task OnGet()
         {
             AppUser user = await _manager.GetUserAsync(User);
-            MyRecipes = _recipeService.GetRecipesByUser(user);
-            //ItemsOfOneRecipe = _recipeItemService.GetRecipeItemsByRecipe(Recipe);
-           
+            MyRecipes = _recipeService.GetRecipesByUser(user);           
         }
     }
 }
