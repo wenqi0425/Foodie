@@ -12,9 +12,12 @@
 </div>
 <br />
 
-<h3> Edit Recipe @Model.Recipe.Name</h3>
+<h1> Edit Recipe</h1>
 <br />
 
+<h3> @Model.Recipe.Name</h3>
+
+<br />
 <div class="col-md-4">
     <form asp-action="Create" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>

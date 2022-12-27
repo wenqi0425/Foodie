@@ -1,16 +1,16 @@
 ﻿@page
 @using Foodie.Models;
 @using Foodie.Services.Interfaces;
-@model Foodie.Pages.Recipes.RecipeDetailsModel
+@model Foodie.Areas.Identity.Pages.Account.Manage.MyRecipeDetailsModel
 @inject IRecipeService RecipeService;
 @inject IRecipeItemService RecipeItemService;
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "My Recipe Details";
 }
 
 <div>
-    <a asp-page="/Recipes/GetAllRecipes">Back to List</a>
+    <a asp-page="./CheckMyRecipes">Back to List</a>
 </div>
 <br />
 
@@ -33,10 +33,10 @@
     <tbody>
         @foreach (var item in Model.RecipeItems)
         {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
-            </tr>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                </tr>
         }
     </tbody>
 </table>
@@ -48,4 +48,3 @@
 
 <h4>Introduction</h4>
 @Html.DisplayFor(model => model.Recipe.Introduction)
-
