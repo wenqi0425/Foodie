@@ -23,32 +23,33 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
-        public string Username { get; set; }
+        public string Email { get; set; }
+        public AppUser LoggedInUser { get; set; }        
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        [BindProperty]
-        public InputModel Input { get; set; }
+        [BindProperty] public string FirstName { get; set; }
+        [BindProperty] public string LastName { get; set; }
+        [BindProperty] public string AboutMe { get; set; }        
+
+        [BindProperty] public InputModel Input { get; set; }
 
         public class InputModel
         {
-            [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            public string AboutMe { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
         }
 
         private async Task LoadAsync(AppUser user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            LoggedInUser = await _userManager.GetUserAsync(User);
 
-            Username = userName;
-
-            Input = new InputModel
-            {
-                PhoneNumber = phoneNumber
-            };
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Email = user.Email;
+            AboutMe = user.AboutMe;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -66,28 +67,11 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.AboutMe = AboutMe;
 
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync(user);
-                return Page();
-            }
-
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
-
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
