@@ -4,22 +4,46 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this recipe?</h3>
 <div>
-    <h4>Recipe</h4>
+    <a asp-page="./CheckMyRecipes">Back to List</a>
+</div>
+<br />
 
+<h1>Delete Recipe</h1>
+<div>
     <h3>@Html.DisplayFor(model => model.Recipe.Name)</h3>
     <img src="data:image/jpg;base64,@Model.Recipe.ImageData" width="300px" height="200px"></img>
     <br />
     <br />
+
+    <h4>Ingredients</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Ingredient</th>
+                <th> Amout</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RecipeItems)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Cooking Steps</h4>
+    @Html.DisplayFor(model => model.Recipe.CookingSteps)
+
+    <br /> <br />
 
     <h4>Introduction</h4>
     @Html.DisplayFor(model => model.Recipe.Introduction)
 
     <form method="post">
         <input type="hidden" asp-for="Recipe.Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./CheckMyRecipes">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
     </form>
