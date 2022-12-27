@@ -1,6 +1,7 @@
 using Foodie.Models;
 using Foodie.Services.Interfaces;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
 {
+    [Authorize]
     public class CheckMyRecipesModel : PageModel
     {
         private UserManager<AppUser> _manager;
