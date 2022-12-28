@@ -44,6 +44,8 @@ namespace Foodie.Pages.Recipes
         }
     }
 
+    // Don't Repeat Yourself
+    // SearchModel will be reused at the Index Page
     public class SearchModel
     {
         public string SearchString { get; set; }
