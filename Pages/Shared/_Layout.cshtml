@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Foodie.Models
+@using Foodie.Services.Interfaces
+@inject SignInManager<AppUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,6 +33,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Recipes/GetAllRecipes">Recipes</a>
                         </li>
+                        @*@if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Identity/Account/Manage/CheckMyRecipes">My Recipes</a>
+                            </li>
+                        }*@
                     </ul>
                 </div>
             </div>
@@ -39,6 +50,7 @@
         </main>
     </div>
 
+    <!-- Footer -->
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - Foodie - <a asp-area="" asp-page="/Privacy">Privacy</a>
