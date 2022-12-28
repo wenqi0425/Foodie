@@ -17,16 +17,21 @@ namespace Foodie.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        public IndexModel(ILogger<IndexModel> logger)
+        private IRecipeService _recipeService;
+        private IRecipeItemService _recipeItemService;
+
+        public IndexModel(ILogger<IndexModel> logger, IRecipeService recipeService, IRecipeItemService recipeItemService)
         {
             _logger = logger;
+            _recipeService = recipeService;
+            _recipeItemService = recipeItemService;
         }
 
         [BindProperty] public SearchModel Search { get; set; } = new SearchModel();
 
         public void OnGet(string searchString)
         {
-            Search.SearchString = searchString;
+            
         }
 
         public IActionResult OnPost()

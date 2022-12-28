@@ -9,19 +9,21 @@
 </div>
 
 <!-- Search  -->
-<div class="container" style="margin-top: 5vh">
+@*<div class="container" style="margin-top: 5vh">
     <div class="row mb-2 bg-light">
         <div class="col my-2 py-1 d-flex justify-content-center">
             <form class="form-inline" method="post">
                 <div class="form-group">
                     <label class="mx-2"></label>
-                    <input type="text" asp-for="@Model.Search.SearchString" class="form-control rounded-border" style="min-width: 50rem" placeholder="Recipe Name or Ingredient" />
+                    <input type="text" asp-for="@Model.Search.RecipeName" class="form-control rounded-border" style="min-width: 20rem" placeholder="Recipe Name" />
+                    <label class="mx-2"></label>
+                    <input type="text" asp-for="@Model.Search.Ingredient" class="form-control rounded-border" style="min-width: 20rem" placeholder="Ingredient" />
                 </div>
                 <button type="submit" class="btn btn-success mx-2">Search</button>
             </form>
         </div>
     </div>
-</div>
+</div>*@
 
 
 

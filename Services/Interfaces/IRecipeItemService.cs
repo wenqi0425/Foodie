@@ -11,6 +11,6 @@ namespace Foodie.Services.Interfaces
         void DeleteRecipeItem(RecipeItem recipe);
         void EditRecipeItem(RecipeItem recipe);
         IEnumerable<RecipeItem> GetRecipeItemsByRecipeId(int recipeId);
-        //IEnumerable<Recipe> FilterRecipe(SearchModel criteria);
+        IEnumerable<Recipe> SearchRecipes(string ingredient);
     }
 }

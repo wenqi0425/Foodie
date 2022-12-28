@@ -5,15 +5,25 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="container" >
+<div class="container">
     <h1>Recipes</h1>
 
     <!-- Search  -->
     <form class="form-inline" method="get" style="margin-top: 3vh">
-        <input type="text" asp-for="@Model.Search.SearchString" class="form-control rounded-border" style="min-width: 30rem" placeholder="Recipe Name or Ingredient" />
+        <select asp-for="@Model.Search.SearchItem" class="form-control rounded-border" style="max-width: 10rem" asp-items="@Model.SearchItems">
+            <option value="">-- Please Select what you want to search for --</option>
+            <option value="Recipe">Recipe</option>
+            <option value="Ingredient">Ingredient</option>
+        </select>
+        <input type="text" asp-for="@Model.Search.SearchString" class="form-control rounded-border mx-2" style="min-width: 30rem" placeholder="Recipe Name or Ingredient" />
         <button type="submit" class="btn btn-success mx-2">Search</button>
     </form>
-    <!-- Search -->
+
+    @*<form class="form-inline" method="get" style="margin-top: 3vh">
+    <input type="text" asp-for="@Model.Search.RecipeName" class="form-control rounded-border mx-2" style="min-width: 30rem" placeholder="Recipe Name" />
+    <input type="text" asp-for="@Model.Search.Ingredient" class="form-control rounded-border" style="min-width: 30rem" placeholder="Ingredient" />
+    <button type="submit" class="btn btn-success mx-2">Search</button>
+    </form>*@
 </div>
 <br />
 
@@ -46,7 +56,7 @@
                         @Html.DisplayFor(modelItem => recipe.Introduction)
                     </td>
                     <td>
-                        <img src="data:image/jpg;base64,@recipe.ImageData" width="150px" height="100px"></img>
+                        <img src="data:image/jpg;base64,@recipe.ImageData" width="300px" height="200px"></img>
                     </td>
                     <td>
                         <a asp-page="/Recipes/RecipeDetails" asp-route-recipeId="@recipe.Id">Details</a>

@@ -61,7 +61,7 @@ namespace Foodie.Services.EFServices
                 return _context.Recipes;
             }
 
-            return _context.Recipes.Where(r => r.Name == searchString);
+            return _context.Recipes.Where(r => r.Name.Equals(searchString));
         }
 
         public IEnumerable<Recipe> GetRecipesByUser(AppUser user)
@@ -71,14 +71,5 @@ namespace Foodie.Services.EFServices
 
             return recipes;
         }
-
-        //public IEnumerable<Recipe> SearchRecipes(SearchModel search)
-        //{
-        //    if (string.IsNullOrEmpty(search.SearchString))
-        //    {
-        //        return _context.Recipes;
-        //    }
-        //    return _context.Recipes.Where(r => r.Name == search.SearchString).ToList();
-        //}
     }
 }
