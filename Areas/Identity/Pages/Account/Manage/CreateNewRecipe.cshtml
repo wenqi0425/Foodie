@@ -7,16 +7,9 @@
     ViewData["ActivePage"] = ManageNavPages.CreateNewRecipe;
 }
 
-<div>
-    <a asp-page="./CheckMyRecipes">Back to List</a>
-</div>
-<br />
-
-<h3> Create New Recipe</h3>
-<br />
-
 <div class="col-md-4">
-    <form asp-action="Create" method="post">
+    <h3> Create New Recipe</h3>
+    <form asp-action="Create" method="post" style="margin-top: 3vh">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Recipe.Name" class="control-label"></label>
@@ -27,4 +20,8 @@
             <input type="submit" value="Create" class="btn btn-primary" />
         </div>        
     </form>
+</div>
+
+<div style="margin-top: 3vh">
+    <a asp-page="./CheckMyRecipes">Back to List</a>
 </div>
