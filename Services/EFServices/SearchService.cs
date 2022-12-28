@@ -7,14 +7,35 @@ namespace Foodie.Services.EFServices
 {
     public class SearchService : ISearchService
     {
-        public IEnumerable<Recipe> SearchRecipeByIngredient(string ingredient)
+        private readonly IRecipeItemService _recipeItemService;
+        private readonly IRecipeService _recipeService;
+
+        public SearchService(IRecipeItemService recipeItemService, IRecipeService recipeService)
         {
-            throw new System.NotImplementedException();
+            _recipeItemService = recipeItemService;
+            _recipeService = recipeService;
         }
 
-        public IEnumerable<Recipe> SearchRecipeByRecipeName(string recipeName)
+        public IEnumerable<Recipe> SearchRecipesByCriteria(string category, string criteria)
         {
-            throw new System.NotImplementedException();
+            IEnumerable<Recipe> Recipes;
+
+            if (!string.IsNullOrEmpty(category) && category.Equals("Recipe"))
+            {
+                Recipes = _recipeService.SearchRecipes(criteria);
+            }
+
+            else if (!string.IsNullOrEmpty(category) && category.Equals("Ingredient"))
+            {
+                Recipes = _recipeItemService.SearchRecipes(criteria);
+            }
+
+            else
+            {
+                Recipes = _recipeService.GetAllRecipes();
+            }
+
+            return Recipes;
         }
     }
 }

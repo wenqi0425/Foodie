@@ -38,6 +38,7 @@ namespace Foodie
             services.AddTransient<IRecipeService, EFRecipeService>();
             services.AddTransient<IRecipeItemService, EFRecipeItemService>();
             services.AddTransient<IEmailSender, EmailService>();
+            services.AddTransient<ISearchService, SearchService>();
 
             services.AddRazorPages();
 

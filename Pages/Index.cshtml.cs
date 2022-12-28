@@ -27,16 +27,16 @@ namespace Foodie.Pages
             _recipeItemService = recipeItemService;
         }
 
-        [BindProperty] public SearchModel Search { get; set; } = new SearchModel();
+        //[BindProperty] public SearchModel Search { get; set; } = new SearchModel();
 
         public void OnGet(string searchString)
         {
             
         }
 
-        public IActionResult OnPost()
-        {
-            return RedirectToPage("/Recipes/GetAllRecipes", Search);
-        }
+        //public IActionResult OnPost()
+        //{
+        //    return RedirectToPage("/Recipes/GetAllRecipes", Search);
+        //}
     }
 }
