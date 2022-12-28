@@ -4,4 +4,9 @@
     ViewData["Title"] = "Confirm email";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>@Model.StatusMessage</h1>
+
+@if (Model.WelcomeMessage)
+{
+    <p>You can <a asp-area="Identity" asp-page="/Account/Login">log in</a> now.</p>
+}

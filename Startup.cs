@@ -36,13 +36,14 @@ namespace Foodie
                    Configuration.GetConnectionString("LocalConnection")));
 
             services.AddTransient<IRecipeService, EFRecipeService>();
-            services.AddTransient<IRecipeItemService, EFRecipeItemService>();            
+            services.AddTransient<IRecipeItemService, EFRecipeItemService>();
+            services.AddTransient<IEmailSender, EmailService>();
 
             services.AddRazorPages();
 
             services.AddIdentity<AppUser, IdentityRole<int>>(options =>
             {
-                //options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = true;
             })
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders()
