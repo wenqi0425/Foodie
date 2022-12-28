@@ -11,46 +11,56 @@
 
     <!-- Search  -->
     <form class="form-inline" method="get">
-        <input type="text" asp-for="@Model.Search.SearchString" class="form-control rounded-border" style="min-width: 50rem" placeholder="Recipe Name or Ingredient" />        
+        <input type="text" asp-for="@Model.Search.SearchString" class="form-control rounded-border" style="min-width: 50rem" placeholder="Recipe Name or Ingredient" />
         <button type="submit" class="btn btn-success mx-2">Search</button>
     </form>
     <!-- Search -->
 </div>
 <br />
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipes[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipes[0].Introduction)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Recipes[0].ImageData)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var recipe in Model.Recipes)
-        {
+<!-- Results -->
+@if (Model.Recipes.Count() > 0)
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => recipe.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => recipe.Introduction)
-                </td>
-                <td>
-                    <img src="data:image/jpg;base64,@recipe.ImageData" width="150px" height="100px"></img>
-                </td>
-                <td>
-                    <a asp-page="/Recipes/RecipeDetails" asp-route-recipeId="@recipe.Id">Details</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].Introduction)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Recipes[0].ImageData)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var recipe in Model.Recipes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => recipe.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => recipe.Introduction)
+                    </td>
+                    <td>
+                        <img src="data:image/jpg;base64,@recipe.ImageData" width="150px" height="100px"></img>
+                    </td>
+                    <td>
+                        <a asp-page="/Recipes/RecipeDetails" asp-route-recipeId="@recipe.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="w-100 text-center mt-5">
+        <h5>@Model.ScreenMessage</h5>
+    </div>
+}
+
