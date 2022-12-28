@@ -1,4 +1,6 @@
 ﻿using Foodie.Models;
+using Foodie.Pages.Recipes;
+
 using System.Collections.Generic;
 
 namespace Foodie.Services.Interfaces
@@ -9,5 +11,6 @@ namespace Foodie.Services.Interfaces
         void DeleteRecipeItem(RecipeItem recipe);
         void EditRecipeItem(RecipeItem recipe);
         IEnumerable<RecipeItem> GetRecipeItemsByRecipeId(int recipeId);
+        //IEnumerable<Recipe> FilterRecipe(SearchModel criteria);
     }
 }

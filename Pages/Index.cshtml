@@ -4,16 +4,27 @@
     ViewData["Title"] = "Home page";
 }
 
-<div align="center">
-    <br></br>
+<div align="center" style="margin-top: 10vh">
     <img src="/images/slogan.jpg" class="ml-1 mr-3" style="max-height: 200px" />
 </div>
-<br />
-<div class="text-center">
-</div>
-<div class="container" style="margin-top: 10vh">
+
+<!-- Search  -->
+<div class="container" style="margin-top: 5vh">
     <div class="row mb-2 bg-light">
         <div class="col my-2 py-1 d-flex justify-content-center">
+            <form class="form-inline" method="post">
+                <div class="form-group">
+                    <label class="mx-2"></label>
+                    <input type="text" asp-for="@Model.Search.SearchString" class="form-control rounded-border" style="min-width: 50rem" placeholder="Recipe Name or Ingredient" />
+                </div>
+                <button type="submit" class="btn btn-success mx-2">Search</button>
+            </form>
         </div>
     </div>
 </div>
+
+
+
+
+
+

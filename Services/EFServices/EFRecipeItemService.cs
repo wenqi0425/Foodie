@@ -41,5 +41,13 @@ namespace Foodie.Services.EFServices
 
             return recipeItems;
         }
+
+        //public IEnumerable<Recipe> FilterRecipe(string recipeName)
+        //{
+        //    IEnumerable<Recipe> recipes = _context.Recipes
+        //        .Where(r => r.RecipeItems == recipeName).ToList();
+
+        //    return recipes;
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Foodie.Models;
+using Foodie.Pages.Recipes;
 using Foodie.Services.Interfaces;
 
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,16 @@ namespace Foodie.Services.EFServices
             return recipes;
         }
 
+        public IEnumerable<Recipe> SearchRecipes(string searchString)
+        {
+            if (string.IsNullOrEmpty(searchString))
+            {
+                return _context.Recipes;
+            }
+
+            return _context.Recipes.Where(r => r.Name == searchString);
+        }
+
         public IEnumerable<Recipe> GetRecipesByUser(AppUser user)
         {
             IEnumerable<Recipe> recipes = _context.Recipes
@@ -60,5 +71,14 @@ namespace Foodie.Services.EFServices
 
             return recipes;
         }
+
+        //public IEnumerable<Recipe> SearchRecipes(SearchModel search)
+        //{
+        //    if (string.IsNullOrEmpty(search.SearchString))
+        //    {
+        //        return _context.Recipes;
+        //    }
+        //    return _context.Recipes.Where(r => r.Name == search.SearchString).ToList();
+        //}
     }
 }

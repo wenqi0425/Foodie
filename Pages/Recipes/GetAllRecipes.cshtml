@@ -1,11 +1,23 @@
-﻿@page 
+﻿@page
 @model Foodie.Pages.Recipes.GetAllRecipesModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container">
+    <h1>Recipes</h1>
+    <br />
+
+    <!-- Search  -->
+    <form class="form-inline" method="get">
+        <input type="text" asp-for="@Model.Search.SearchString" class="form-control rounded-border" style="min-width: 50rem" placeholder="Recipe Name or Ingredient" />        
+        <button type="submit" class="btn btn-success mx-2">Search</button>
+    </form>
+    <!-- Search -->
+</div>
+<br />
+
 
 <table class="table">
     <thead>
