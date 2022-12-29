@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
@@ -30,7 +31,8 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public async Task OnGet()
         {
             AppUser user = await _manager.GetUserAsync(User);
-            MyRecipes = _recipeService.GetRecipesByUser(user);           
+            MyRecipes = _recipeService.GetRecipesByUser(user);
+            MyRecipes = Enumerable.Reverse(MyRecipes);
         }
     }
 }
