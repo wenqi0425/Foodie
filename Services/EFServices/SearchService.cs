@@ -1,4 +1,5 @@
 ﻿using Foodie.Models;
+using Foodie.Pages;
 using Foodie.Services.Interfaces;
 
 using System.Collections.Generic;
@@ -16,9 +17,12 @@ namespace Foodie.Services.EFServices
             _recipeService = recipeService;
         }
 
-        public IEnumerable<Recipe> SearchRecipesByCriteria(string category, string criteria)
+        public IEnumerable<Recipe> SearchRecipesByCriteria(RecipeCriteriaModel RecipeCriteria)            
         {
             IEnumerable<Recipe> Recipes;
+
+            var category = RecipeCriteria.SearchCategory;
+            var criteria = RecipeCriteria.SearchString;
 
             if (!string.IsNullOrEmpty(category) && category.Equals("Recipe"))
             {

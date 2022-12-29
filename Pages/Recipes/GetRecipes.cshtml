@@ -1,5 +1,5 @@
 ﻿@page
-@model Foodie.Pages.Recipes.GetAllRecipesModel
+@model Foodie.Pages.Recipes.GetRecipesModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,13 +10,14 @@
 
     <!-- Search  -->
     <form class="form-inline" method="get" style="margin-top: 3vh">
-        <select asp-for="@Model.SearchCategory" class="form-control rounded-border" style="max-width: 10rem" asp-items="@Model.SearchCategories">
+        <select asp-for="@Model.RecipeCriteria.SearchCategory" class="form-control rounded-border" style="max-width: 10rem" asp-items="@Model.SearchCategories">
             <option value="">-- Please Select what you want to search for --</option>
             <option value="Recipe">Recipe</option>
             <option value="Ingredient">Ingredient</option>
         </select>
-        <input type="text" asp-for="@Model.SearchString" class="form-control rounded-border mx-2" style="min-width: 30rem" placeholder="Recipe Name or Ingredient" />
+        <input type="text" asp-for="@Model.RecipeCriteria.SearchString" class="form-control rounded-border mx-2" style="min-width: 30rem" placeholder="Recipe Name or Ingredient" />
         <button type="submit" class="btn btn-success mx-2">Search</button>
+        <a asp-page="GetRecipes" class="btn btn-outline-dark mx-2 rounded-border">Clear Filter</a>
     </form>
 
     @*<form class="form-inline" method="get" style="margin-top: 3vh">

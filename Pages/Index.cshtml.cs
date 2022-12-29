@@ -5,6 +5,7 @@ using Foodie.Services.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 using System;
@@ -17,26 +18,26 @@ namespace Foodie.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private IRecipeService _recipeService;
-        private IRecipeItemService _recipeItemService;
 
-        public IndexModel(ILogger<IndexModel> logger, IRecipeService recipeService, IRecipeItemService recipeItemService)
+        public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            _recipeService = recipeService;
-            _recipeItemService = recipeItemService;
         }
 
-        //[BindProperty] public SearchModel Search { get; set; } = new SearchModel();
+        public SelectList SearchCategories { get; set; }
 
-        public void OnGet(string searchString)
+        [BindProperty]
+        public RecipeCriteriaModel RecipeCriteria { get; set; } = new RecipeCriteriaModel();
+
+        public IActionResult OnPost()
         {
-            
+            return RedirectToPage("/Recipes/GetRecipes", RecipeCriteria);
         }
+    }
 
-        //public IActionResult OnPost()
-        //{
-        //    return RedirectToPage("/Recipes/GetAllRecipes", Search);
-        //}
+    public class RecipeCriteriaModel
+    {
+        public string SearchCategory { get; set; }
+        public string SearchString { get; set; }
     }
 }
