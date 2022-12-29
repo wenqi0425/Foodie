@@ -31,7 +31,10 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
 
         [BindProperty] public string FirstName { get; set; }
         [BindProperty] public string LastName { get; set; }
-        [BindProperty] public string AboutMe { get; set; }        
+        [BindProperty] public string AboutMe { get; set; }
+        [BindProperty] public string Address { get; set; }
+        [BindProperty] public string Postcode { get; set; }
+        [BindProperty] public string PhoneNumber { get; set; }
 
         [BindProperty] public InputModel Input { get; set; }
 
@@ -40,6 +43,9 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             public string AboutMe { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
+            public string Address { get; set; }
+            public string Postcode { get; set; }
+            public string PhoneNumber { get; set; }
         }
 
         private async Task LoadAsync(AppUser user)
@@ -48,8 +54,10 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
 
             FirstName = user.FirstName;
             LastName = user.LastName;
-            Email = user.Email;
             AboutMe = user.AboutMe;
+            Address = user.Address;
+            Postcode = user.Postcode;
+            PhoneNumber = user.PhoneNumber;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -70,6 +78,9 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             user.FirstName = FirstName;
             user.LastName = LastName;
             user.AboutMe = AboutMe;
+            user.Address = Address;
+            user.Postcode = Postcode;
+            user.PhoneNumber= PhoneNumber;
 
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
