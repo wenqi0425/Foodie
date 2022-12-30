@@ -18,8 +18,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
     public class EditRecipeModel : PageModel
     {
         public Recipe Recipe { get; set; }
-        public AppUser AppUser { get; set; }
-        public string Message { get; set; }
+        public AppUser AppUser { get; set; }        
 
         public RecipeItem RecipeItem1 { get; set; }
         public RecipeItem RecipeItem2 { get; set; }
@@ -33,15 +32,12 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
 
         public IEnumerable<RecipeItem> RecipeItemsOfOneRecipe { get; set; }
 
-        AppDbContext _context;
-
         public EditRecipeModel(UserManager<AppUser> manager, IRecipeService recipeService,
-            IRecipeItemService recipeItemService, AppDbContext context)
+            IRecipeItemService recipeItemService)
         {
             _recipeService = recipeService;
             _recipeItemService = recipeItemService;
             _manager = manager;
-            _context = context;
         }
         public IActionResult OnGet(int recipeId)
         {
@@ -71,6 +67,9 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         [HttpPost]
         public ActionResult OnPost()
         {
+            // validate input item name followed by amount. 
+            //IsValid = ValidateItemAmountPairs();
+
             // we need to keep some current recipe states.
             var recipeId = Recipe.Id;
             string tempImageFileString = null;
@@ -103,6 +102,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
 
             // if existing item is zero, then we think client is creating a new recipe.
             // a recipe should have items size>0
+
             Boolean isNewRecipe = recipeItemsExisted.Count() == 0;
 
             if (isNewRecipe)
@@ -185,16 +185,51 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             for (int i = 0; i < newItemsRefToPesisted.Count; i++)
             {
                 // if both fields having been cleaned up, then delete this item from db.
-                if (newItemsRefToPesisted[i].Name == null && newItemsRefToPesisted[i].Amount==null) { 
-                    recipeItemService.DeleteRecipeItem(oldItems[i]); continue ; 
+                if (newItemsRefToPesisted[i].Name == null && newItemsRefToPesisted[i].Amount == null)
+                {
+                    recipeItemService.DeleteRecipeItem(oldItems[i]); continue;
                 }
                 if (!newItemsRefToPesisted[i].Name.Equals(oldItems[i].Name))
                 {
                     oldItems[i].Name = newItemsRefToPesisted[i].Name;
-                    oldItems[i].Amount = newItemsRefToPesisted[i].Amount==null?"": newItemsRefToPesisted[i].Amount;
+                    oldItems[i].Amount = newItemsRefToPesisted[i].Amount == null ? "" : newItemsRefToPesisted[i].Amount;
                     recipeItemService.EditRecipeItem(oldItems[i]);
                 };
             }
         }
+
+        #region try to check the Ingredient and Amount pair.   
+        /*
+        public string ScreenMessage { get; set; }
+        public Boolean IsValid { get; set; }
+        private Boolean ValidateItemAmountPairs()
+        {
+            Boolean isValid = true;
+            List<RecipeItem> itemInputs = new List<RecipeItem>() { RecipeItem1, RecipeItem2, RecipeItem3, RecipeItem4, RecipeItem5 };
+
+            foreach (var item in itemInputs)
+            {
+                if (item == null) { continue; }
+                if (!IsItemWithAmount(item))
+                {
+                    ScreenMessage = "Please input both ingredient name and amount.";
+                    isValid = false;
+                    break;
+                }
+            }
+            return isValid;
+        }
+
+        private Boolean IsItemWithAmount(RecipeItem recipeItem)
+        {
+            Boolean isWithAmout = false;
+            // recipeItem should have name and amount both
+            if (recipeItem.Name != null && recipeItem.Amount != null)
+            {
+                isWithAmout = true;
+            }
+            return isWithAmout;
+        }*/
+        #endregion
     }
 }
