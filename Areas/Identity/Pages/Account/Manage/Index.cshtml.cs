@@ -46,12 +46,14 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             public string Address { get; set; }
             public string Postcode { get; set; }
             public string PhoneNumber { get; set; }
+            public string Email { get; set; }
         }
 
         private async Task LoadAsync(AppUser user)
         {
             LoggedInUser = await _userManager.GetUserAsync(User);
 
+            Email = user.Email;
             FirstName = user.FirstName;
             LastName = user.LastName;
             AboutMe = user.AboutMe;
@@ -81,6 +83,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             user.Address = Address;
             user.Postcode = Postcode;
             user.PhoneNumber= PhoneNumber;
+            user.Email = Email;
 
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);

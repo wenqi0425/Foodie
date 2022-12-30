@@ -34,10 +34,4 @@ namespace Foodie.Pages
             return RedirectToPage("/Recipes/GetRecipes", RecipeCriteria);
         }
     }
-
-    public class RecipeCriteriaModel
-    {
-        public string SearchCategory { get; set; }
-        public string SearchString { get; set; }
-    }
 }

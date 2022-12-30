@@ -1,6 +1,5 @@
 ﻿using Foodie.Models;
 using Foodie.Pages.Recipes;
-
 using System.Collections.Generic;
 
 namespace Foodie.Services.Interfaces

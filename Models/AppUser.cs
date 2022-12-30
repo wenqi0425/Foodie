@@ -11,7 +11,7 @@ namespace Foodie.Models
 {
     public class AppUser : IdentityUser<int>
     {
-        // Email and other props are members of the base class
+        // Email and PhoneNumber are members of the base class
         // and do not require a concrete implementation
 
         public override int Id { get; set; } 
@@ -19,7 +19,6 @@ namespace Foodie.Models
         public string? LastName { get; set; }
         public string? Address { get; set; }
         public string? Postcode { get; set; }
-        public string? PhoneNumber { get; set; }
         public string? AboutMe { get; set; }
     }
 }

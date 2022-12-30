@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Administration\**" />
+    <Content Remove="Pages\Administration\**" />
+    <EmbeddedResource Remove="Pages\Administration\**" />
+    <None Remove="Pages\Administration\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MailKit" Version="3.4.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.32" />
@@ -15,10 +22,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="MimeKit" Version="3.4.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Administration\" />
   </ItemGroup>
 
 </Project>

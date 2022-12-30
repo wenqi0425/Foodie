@@ -3,6 +3,7 @@ using Foodie.Pages;
 using Foodie.Services.Interfaces;
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Foodie.Services.EFServices
 {
@@ -22,22 +23,24 @@ namespace Foodie.Services.EFServices
             IEnumerable<Recipe> Recipes;
 
             var category = RecipeCriteria.SearchCategory;
-            var criteria = RecipeCriteria.SearchString;
+            var criterion = RecipeCriteria.SearchCriterion;
 
             if (!string.IsNullOrEmpty(category) && category.Equals("Recipe"))
             {
-                Recipes = _recipeService.SearchRecipes(criteria);
+                Recipes = _recipeService.SearchRecipes(criterion);
             }
 
             else if (!string.IsNullOrEmpty(category) && category.Equals("Ingredient"))
             {
-                Recipes = _recipeItemService.SearchRecipes(criteria);
+                Recipes = _recipeItemService.SearchRecipes(criterion);
             }
 
             else
             {
                 Recipes = _recipeService.GetAllRecipes();
             }
+
+            Recipes = Enumerable.Reverse(Recipes);
 
             return Recipes;
         }

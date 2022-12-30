@@ -53,7 +53,7 @@ namespace Foodie.Pages.Recipes
         {
             if (!string.IsNullOrEmpty(Search.SearchCategory) && Search.SearchCategory.Equals("Recipe"))
             {
-                Recipes = _recipeService.SearchRecipes(Search.SearchString).ToList();
+                Recipes = _recipeService.SearchRecipes(Search.SearchCriterion).ToList();
                 if (Recipes.Count() == 0)
                 {
                     ScreenMessage = "Sorry! We couldn't match any recipes to your request.";
@@ -62,7 +62,7 @@ namespace Foodie.Pages.Recipes
 
             else if (!string.IsNullOrEmpty(Search.SearchCategory) && Search.SearchCategory.Equals("Ingredient"))
             {
-                Recipes = _recipeItemService.SearchRecipes(Search.SearchString).ToList();
+                Recipes = _recipeItemService.SearchRecipes(Search.SearchCriterion).ToList();
                 if (Recipes.Count() == 0)
                 {
                     ScreenMessage = "Sorry! We couldn't match any recipes to your request.";

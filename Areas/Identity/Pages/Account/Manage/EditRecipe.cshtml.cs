@@ -11,9 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 using Foodie.Pages.Recipes;
 using System.Linq;
 
-
-// The efforts I try to edit the content of two tables in one page, but it doesn't work. Therefore I have to change the UI design. 
-// It is the limitation of RazorPage Framework. I discuss it in my report. 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
 {
     [Authorize]
@@ -55,13 +52,6 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             }
 
             RecipeItemsOfOneRecipe = _recipeItemService.GetRecipeItemsByRecipeId(recipeId);
-            //RecipeItemsOfOneRecipe = RecipeItemList;
-
-            /*
-            RecipeItem[] items = new RecipeItem[] {
-
-                RecipeItem1,RecipeItem2,RecipeItem3,RecipeItem4,RecipeItem5
-                };*/
 
             if (RecipeItemsOfOneRecipe.Count() != 0)
             {
@@ -72,7 +62,6 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
                     if (i == 2) { RecipeItem3 = RecipeItemsOfOneRecipe.ElementAt(i); }
                     if (i == 3) { RecipeItem4 = RecipeItemsOfOneRecipe.ElementAt(i); }
                     if (i == 4) { RecipeItem5 = RecipeItemsOfOneRecipe.ElementAt(i); }
-                    //items[i] = RecipeItemsOfOneRecipe.ElementAt(i);
                 }
             }
 
@@ -82,18 +71,8 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         [HttpPost]
         public ActionResult OnPost()
         {
-            //var currentUserId = _manager.GetUserId(User);
-
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
-
             // we need to keep some current recipe states.
             var recipeId = Recipe.Id;
-            //var recipeName = Recipe.Name;
-            //var cookSteps = Recipe.CookingSteps;
-            //var introduction = Recipe.Introduction;
             string tempImageFileString = null;
             byte[] bytes = null;
 
@@ -125,22 +104,6 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             // if existing item is zero, then we think client is creating a new recipe.
             // a recipe should have items size>0
             Boolean isNewRecipe = recipeItemsExisted.Count() == 0;
-
-            //Recipe.UserId = Int32.Parse(currentUserId);
-            //var pesistedReceipe = _context.Recipes.Add(Recipe);
-            //_context.SaveChanges();
-
-            /*
-            Recipe.Name = name;
-            Recipe.CookingSteps = cookingSteps;
-            Recipe.Introduction= introduction;
-            Recipe.ImageData = imageData;   */
-
-            /*RecipeItem.RecipeId = pesistedReceipe.Entity.Id;*/
-
-            //List<string> Ingredients = new List<string>(){ ingredient1, ingredient2, ingredient3, ingredient4, ingredient5 };
-            //List<string> Amounts = new List<string>() { amount1, amount2, amount3, amount4, amount5};
-
 
             if (isNewRecipe)
             {

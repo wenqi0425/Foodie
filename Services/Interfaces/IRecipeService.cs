@@ -1,6 +1,5 @@
 ﻿using Foodie.Models;
 using Foodie.Pages.Recipes;
-
 using System.Collections.Generic;
 
 namespace Foodie.Services.Interfaces
@@ -14,7 +13,6 @@ namespace Foodie.Services.Interfaces
         IEnumerable<Recipe> GetAllRecipes();
         IEnumerable<Recipe> GetRecipesByRecipeName(string recipeName);
         IEnumerable<Recipe> GetRecipesByUser(AppUser user);
-        IEnumerable<Recipe> SearchRecipes(string searchString);
-        //IEnumerable<Recipe> SearchRecipes(SearchModel search);
+        IEnumerable<Recipe> SearchRecipes(string recipeName);
     }
 }

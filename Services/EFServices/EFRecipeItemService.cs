@@ -1,8 +1,6 @@
 ﻿using Foodie.Models;
 using Foodie.Services.Interfaces;
-
 using Microsoft.EntityFrameworkCore;
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +9,7 @@ namespace Foodie.Services.EFServices
 {
     public class EFRecipeItemService : IRecipeItemService
     {
-        AppDbContext _context;
+        private AppDbContext _context;
         public EFRecipeItemService(AppDbContext context)
         {
             _context = context;

@@ -11,7 +11,7 @@ namespace Foodie.Services.EFServices
 {
     public class EFRecipeService : IRecipeService
     {
-        AppDbContext _context;
+        private AppDbContext _context;
 
         public EFRecipeService(AppDbContext context)
         {
@@ -54,14 +54,14 @@ namespace Foodie.Services.EFServices
             return recipes;
         }
 
-        public IEnumerable<Recipe> SearchRecipes(string searchString)
+        public IEnumerable<Recipe> SearchRecipes(string recipeName)
         {
-            if (string.IsNullOrEmpty(searchString))
+            if (string.IsNullOrEmpty(recipeName))
             {
                 return _context.Recipes;
             }
 
-            return _context.Recipes.Where(r => r.Name.Equals(searchString));
+            return _context.Recipes.Where(r => r.Name.Equals(recipeName));
         }
 
         public IEnumerable<Recipe> GetRecipesByUser(AppUser user)
