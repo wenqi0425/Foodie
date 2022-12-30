@@ -11,8 +11,6 @@ namespace Foodie.Models
 {
     public class AppDbContext : IdentityDbContext<AppUser, IdentityRole<int>, int>
     {
-        // space for your DbSet<EntityName> properties
-
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<RecipeItem> RecipeItems { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }

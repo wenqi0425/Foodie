@@ -44,6 +44,8 @@ namespace Foodie.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Postcode = table.Column<string>(nullable: true),
                     AboutMe = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -186,8 +188,8 @@ namespace Foodie.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: false),
-                    Amount = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Amount = table.Column<string>(nullable: true),
                     RecipeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -199,32 +201,6 @@ namespace Foodie.Migrations
                         principalTable: "Recipes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Wrapper",
-                columns: table => new
-                {
-                    WrapperId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RecipeId = table.Column<int>(nullable: true),
-                    RecipeItemId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Wrapper", x => x.WrapperId);
-                    table.ForeignKey(
-                        name: "FK_Wrapper_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Wrapper_RecipeItems_RecipeItemId",
-                        column: x => x.RecipeItemId,
-                        principalTable: "RecipeItems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -275,16 +251,6 @@ namespace Foodie.Migrations
                 name: "IX_Recipes_UserId",
                 table: "Recipes",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Wrapper_RecipeId",
-                table: "Wrapper",
-                column: "RecipeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Wrapper_RecipeItemId",
-                table: "Wrapper",
-                column: "RecipeItemId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -305,13 +271,10 @@ namespace Foodie.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Wrapper");
+                name: "RecipeItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "RecipeItems");
 
             migrationBuilder.DropTable(
                 name: "Recipes");

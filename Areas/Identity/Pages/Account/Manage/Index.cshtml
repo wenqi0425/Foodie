@@ -14,49 +14,43 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control rounded-border" disabled />
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control rounded-border" disabled />
             </div>
 
             <div class="form-group">
-                <label asp-for="FirstName"></label>
-                <input asp-for="FirstName" class="form-control rounded-border" />
+                <label asp-for="Input.@Model.FirstName"></label>
+                <input asp-for="Input.@Model.FirstName" class="form-control rounded-border" />
                 <span asp-validation-for="Input.@Model.FirstName"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="LastName"></label>
-                <input asp-for="LastName" class="form-control rounded-border" />
+                <label asp-for="Input.@Model.LastName"></label>
+                <input asp-for="Input.@Model.LastName" class="form-control rounded-border" />
                 <span asp-validation-for="Input.@Model.LastName"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Address"></label>
-                <input asp-for="Address" class="form-control rounded-border" />
+                <label asp-for="Input.@Model.Address"></label>
+                <input asp-for="Input.@Model.Address" class="form-control rounded-border" />
                 <span asp-validation-for="Input.@Model.Address"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Postcode"></label>
-                <input asp-for="Postcode" class="form-control rounded-border" />
+                <label asp-for="Input.@Model.Postcode"></label>
+                <input asp-for="Input.@Model.Postcode" class="form-control rounded-border" />
                 <span asp-validation-for="Input.@Model.Postcode"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control rounded-border" />
+                <label asp-for="Input.@Model.PhoneNumber"></label>
+                <input asp-for="Input.@Model.PhoneNumber" class="form-control rounded-border" />
                 <span asp-validation-for="Input.@Model.PhoneNumber"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="LastName"></label>
-                <input asp-for="LastName" class="form-control rounded-border" />
-                <span asp-validation-for="Input.@Model.LastName"></span>
-            </div>
-
-            <div class="form-group">
                 <label class="control-label">About Me</label>
-                <textarea asp-for="@Model.AboutMe" class="form-control rounded-border" cols="50" rows="6"></textarea>
+                <textarea asp-for="Input.@Model.AboutMe" class="form-control rounded-border" cols="50" rows="6"></textarea>
             </div>
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foodie.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221230045451_removeRequiredFileds")]
-    partial class removeRequiredFileds
+    [Migration("20221230100601_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
