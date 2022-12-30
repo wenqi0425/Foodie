@@ -23,7 +23,6 @@ namespace Foodie.Pages.Recipes
         }
 
         public IList<Recipe> Recipes { get; set; }
-        public IList<RecipeItem> RecipeItems { get; set; }
         public string ScreenMessage { get; set; }
         public SelectList SearchCategories { get; set; }
 
