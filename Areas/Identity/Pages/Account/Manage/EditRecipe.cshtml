@@ -18,16 +18,22 @@
 <h3> @Model.Recipe.Name</h3>
 
 <br />
-<div class="col-md-4">
+<div class="col-md-4" style="min-width: 40rem">
     <form asp-action="Create" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
+        <table class="table">
+            <tr>
+                <th>Change Recipe Name:</th>
+                <th><input asp-for="@Model.Recipe.Name" class="form-control" /></th>
+            </tr>
+            <span asp-validation-for="@Model.Recipe.Name" class="text-danger"></span>
+        </table>
+        @*<div class="form-group">
             <label asp-for="@Model.Recipe.Name" class="control-label"></label>
             <input asp-for="@Model.Recipe.Name" class="form-control" />
             <span asp-validation-for="@Model.Recipe.Name" class="text-danger"></span>
-        </div>
+        </div>*@
 
-        <p>Ingredient and Amount </p>
         <table class="table">
             <thead>
                 <tr>
@@ -67,19 +73,19 @@
         }*@
 
         <div class="form-group">
-            <label asp-for="@Model.Recipe.CookingSteps" class="control-label"></label>
+            <b><label asp-for="@Model.Recipe.CookingSteps" class="control-label"></label></b>
             <textarea asp-for="@Model.Recipe.CookingSteps" class="form-control rounded-border" rows="8"></textarea>
             <span asp-validation-for="@Model.Recipe.CookingSteps" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="@Model.Recipe.Introduction" class="control-label"></label>
+            <b><label asp-for="@Model.Recipe.Introduction" class="control-label"></label></b>
             <textarea asp-for="@Model.Recipe.Introduction" class="form-control rounded-border" rows="5"></textarea>
             <div asp-validation-summary="All" class="text-secondary"></div>
         </div>
 
         <div class="form-group">
-            <label asp-for="@Model.Recipe.ImageFile" class="control-label"></label>
+            <b>Please Upload a JPG image</b>
             <input type="file" asp-for="@Model.Recipe.ImageFile" class="form-control" />
             <span asp-validation-for="@Model.Recipe.ImageFile" class="text-danger"></span>
         </div>
