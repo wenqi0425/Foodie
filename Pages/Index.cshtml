@@ -13,8 +13,8 @@
     <div class="row mb-2 bg-light">
         <div class="col my-2 py-1 d-flex justify-content-center">
             <form class="form-inline" method="post">
-                <select asp-for="@Model.RecipeCriteria.SearchCategory" class="form-control rounded-border" style="max-width: 10rem" asp-items="@Model.SearchCategories">
-                    <option value="">-- Please select what you want to search for --</option>
+                <select asp-for="@Model.RecipeCriteria.SearchCategory" class="form-control rounded-border" style="min-width: 10rem" asp-items="@Model.SearchCategories">
+                    <option value="">Please select what to search</option>
                     <option value="Recipe">Recipe</option>
                     <option value="Ingredient">Ingredient</option>
                 </select>
