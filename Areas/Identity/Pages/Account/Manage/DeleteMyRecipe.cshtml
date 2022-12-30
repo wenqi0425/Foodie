@@ -43,7 +43,7 @@
     <h4>Introduction</h4>
     @Html.DisplayFor(model => model.Recipe.Introduction)
 
-    <form method="post">
+    <form method="post" style="margin-top: 3vh">
         <input type="hidden" asp-for="Recipe.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" />
     </form>
