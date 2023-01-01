@@ -131,7 +131,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             else
             {
                 List<RecipeItem> newItems = new List<RecipeItem>() { RecipeItem1, RecipeItem2, RecipeItem3, RecipeItem4, RecipeItem5 };
-                //for existed items. user may updat them from frontend, fx: delete it, or re-modify amount; on such a case, we need update its db entry. 
+                // for existed items. user may updat them from frontend, fx: delete it, or re-modify amount; on such a case, we need update its db entry. 
                 updateIngredientList(new List<RecipeItem>(recipeItemsExisted), newItems, _recipeItemService);
 
                 foreach (RecipeItem item in recipeItemsExisted)
@@ -178,11 +178,12 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             }
         }
 
-        private void updateIngredientList(List<RecipeItem> oldItems, List<RecipeItem> newItems, IRecipeItemService recipeItemService)
+        // the size of fullItems is five. 
+        private void updateIngredientList(List<RecipeItem> oldItems, List<RecipeItem> fullItems, IRecipeItemService recipeItemService)
         {
-            // newItems ref. to newly binded values from FE; oldItems ref. to items fetched from DB.
+            // fullItems ref. to newly binded values from FE; oldItems ref. to items fetched from DB.
             // newItemsRefToPesisted in the new bindings
-            List<RecipeItem> newItemsRefToPesisted = newItems.Take(oldItems.Count()).ToList();
+            List<RecipeItem> newItemsRefToPesisted = fullItems.Take(oldItems.Count()).ToList();
             for (int i = 0; i < newItemsRefToPesisted.Count; i++)
             {
                 // if both fields having been cleaned up, then delete this item from db.
