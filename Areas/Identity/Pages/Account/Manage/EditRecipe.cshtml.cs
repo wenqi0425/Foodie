@@ -72,10 +72,10 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
 
             // we need to keep some current recipe states.
             var recipeId = Recipe.Id;
-            string tempImageFileString = null;
+            string existedImageData = null;
             byte[] bytes = null;
 
-            // then we re-assign the Recipe and pointing it to existing Recipe. 
+            // we re-assign the Recipe and pointing it to existing Recipe. 
             var RecipeExisted = _recipeService.GetRecipeById(recipeId);
 
             // otherwise updating image by new uploading
@@ -89,18 +89,18 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
                     }
                 }
 
-                tempImageFileString = Convert.ToBase64String(bytes, 0, bytes.Length);
+                existedImageData = Convert.ToBase64String(bytes, 0, bytes.Length);
             }
             else
             {
                 //  no mater saving ImageData
-                tempImageFileString = RecipeExisted.ImageData;
+                existedImageData = RecipeExisted.ImageData;
             }
 
             // fetching existing recipeItems associated with current recipeId
             IEnumerable<RecipeItem> recipeItemsExisted = _recipeItemService.GetRecipeItemsByRecipeId(recipeId);
 
-            // if existing item is zero, then we think client is creating a new recipe.
+            // if existing item size is zero, then we think the user is creating a new recipe.
             // a recipe should have items size>0
 
             Boolean isNewRecipe = recipeItemsExisted.Count() == 0;
@@ -131,15 +131,16 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             else
             {
                 List<RecipeItem> newItems = new List<RecipeItem>() { RecipeItem1, RecipeItem2, RecipeItem3, RecipeItem4, RecipeItem5 };
-                updateRecipeItemNameAmount(new List<RecipeItem>(recipeItemsExisted), newItems, _recipeItemService);
+                //for existed items. user may updat them from frontend, fx: delete it, or re-modify amount; on such a case, we need update its db entry. 
+                updateIngredientList(new List<RecipeItem>(recipeItemsExisted), newItems, _recipeItemService);
 
                 foreach (RecipeItem item in recipeItemsExisted)
                 {
-                    if (item.Name.Equals(RecipeItem1.Name)) { updateRecipeItemAmount(item, RecipeItem1, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem2.Name)) { updateRecipeItemAmount(item, RecipeItem2, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem3.Name)) { updateRecipeItemAmount(item, RecipeItem3, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem4.Name)) { updateRecipeItemAmount(item, RecipeItem4, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem5.Name)) { updateRecipeItemAmount(item, RecipeItem5, _recipeItemService); continue; }
+                    if (item.Name.Equals(RecipeItem1.Name)) { updateIngredientAmount(item, RecipeItem1, _recipeItemService); continue; }
+                    if (item.Name.Equals(RecipeItem2.Name)) { updateIngredientAmount(item, RecipeItem2, _recipeItemService); continue; }
+                    if (item.Name.Equals(RecipeItem3.Name)) { updateIngredientAmount(item, RecipeItem3, _recipeItemService); continue; }
+                    if (item.Name.Equals(RecipeItem4.Name)) { updateIngredientAmount(item, RecipeItem4, _recipeItemService); continue; }
+                    if (item.Name.Equals(RecipeItem5.Name)) { updateIngredientAmount(item, RecipeItem5, _recipeItemService); continue; }
                 }
 
                 // existed item names
@@ -151,14 +152,14 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             RecipeExisted.Name = Recipe.Name;
             RecipeExisted.Introduction = Recipe.Introduction;
             RecipeExisted.CookingSteps = Recipe.CookingSteps;
-            RecipeExisted.ImageData = tempImageFileString;
+            RecipeExisted.ImageData = existedImageData;
 
             // recipe already in the DB, so update it.
             _recipeService.EditRecipe(RecipeExisted);
             return RedirectToPage("./CheckMyRecipes");
         }
 
-        private void updateRecipeItemAmount(RecipeItem oldItem, RecipeItem newItem, IRecipeItemService recipeItemService)
+        private void updateIngredientAmount(RecipeItem oldItem, RecipeItem newItem, IRecipeItemService recipeItemService)
         {
             oldItem.Name = newItem.Name;
             oldItem.Amount = newItem.Amount;
@@ -177,9 +178,9 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             }
         }
 
-        private void updateRecipeItemNameAmount(List<RecipeItem> oldItems, List<RecipeItem> newItems, IRecipeItemService recipeItemService)
+        private void updateIngredientList(List<RecipeItem> oldItems, List<RecipeItem> newItems, IRecipeItemService recipeItemService)
         {
-            //newItems ref. to newly binded values; oldItems ref. to items fetched from db.
+            // newItems ref. to newly binded values from FE; oldItems ref. to items fetched from DB.
             // newItemsRefToPesisted in the new bindings
             List<RecipeItem> newItemsRefToPesisted = newItems.Take(oldItems.Count()).ToList();
             for (int i = 0; i < newItemsRefToPesisted.Count; i++)
