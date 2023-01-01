@@ -179,22 +179,24 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         }
 
         // the size of fullItems is five. 
+        // the size of oldItem is less than or equal to five.
         private void updateIngredientList(List<RecipeItem> oldItems, List<RecipeItem> fullItems, IRecipeItemService recipeItemService)
         {
-            // fullItems ref. to newly binded values from FE; oldItems ref. to items fetched from DB.
-            // newItemsRefToPesisted in the new bindings
-            List<RecipeItem> newItemsRefToPesisted = fullItems.Take(oldItems.Count()).ToList();
-            for (int i = 0; i < newItemsRefToPesisted.Count; i++)
+            // fullItems ref. to newly binded values from Front-end;
+            // oldItems ref. to items fetched from DB.
+            // itemsForEditRefToPesisted ref. to the items that maybe updated by user again.
+            List<RecipeItem> itemsForEditRefToPesisted = fullItems.Take(oldItems.Count()).ToList();
+            for (int i = 0; i < itemsForEditRefToPesisted.Count; i++)
             {
                 // if both fields having been cleaned up, then delete this item from db.
-                if (newItemsRefToPesisted[i].Name == null && newItemsRefToPesisted[i].Amount == null)
+                if (itemsForEditRefToPesisted[i].Name == null && itemsForEditRefToPesisted[i].Amount == null)
                 {
                     recipeItemService.DeleteRecipeItem(oldItems[i]); continue;
                 }
-                if (!newItemsRefToPesisted[i].Name.Equals(oldItems[i].Name))
+                if (!itemsForEditRefToPesisted[i].Name.Equals(oldItems[i].Name))
                 {
-                    oldItems[i].Name = newItemsRefToPesisted[i].Name;
-                    oldItems[i].Amount = newItemsRefToPesisted[i].Amount == null ? "" : newItemsRefToPesisted[i].Amount;
+                    oldItems[i].Name = itemsForEditRefToPesisted[i].Name;
+                    oldItems[i].Amount = itemsForEditRefToPesisted[i].Amount == null ? "" : itemsForEditRefToPesisted[i].Amount;
                     recipeItemService.EditRecipeItem(oldItems[i]);
                 };
             }
