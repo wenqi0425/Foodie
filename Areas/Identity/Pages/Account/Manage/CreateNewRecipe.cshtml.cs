@@ -25,14 +25,14 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         private IRecipeService _recipeService;
         public List<Recipe> MyRecipes;
 
-        AppDbContext _context;
+        //AppDbContext _context;
 
-        public CreateNewRecipeModel(UserManager<AppUser> manager, IRecipeService recipeService,
-            AppDbContext context)
+        public CreateNewRecipeModel(UserManager<AppUser> manager, IRecipeService recipeService/*,
+            AppDbContext context*/)
         {
             _recipeService = recipeService;
             _manager = manager;
-            _context = context;
+            //_context = context;
         }
         public IActionResult OnGet()
         {
@@ -40,7 +40,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         }
 
         [HttpPost]
-        public ActionResult OnPost()
+        public IActionResult OnPost()
         {
             var currentUserId = _manager.GetUserId(User);
             if (!ModelState.IsValid)
@@ -49,8 +49,8 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
             }
 
             Recipe.UserId = Int32.Parse(currentUserId);
-            var pesistedReceipe = _context.Recipes.Add(Recipe);
-            _context.SaveChanges();
+            _recipeService.AddRecipe(Recipe);
+            //_context.SaveChanges();
 
             return RedirectToPage("./CheckMyRecipes");
         }
