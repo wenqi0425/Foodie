@@ -10,12 +10,15 @@
 
     <!-- Search  -->
     <form class="form-inline" method="get" style="margin-top: 3vh">
-        <select asp-for="@Model.RecipeCriteria.SearchCategory" class="form-control rounded-border" style="min-width: 10rem" asp-items="@Model.SearchCategories">
+        <select asp-for="@Model.RecipeCriteria.SearchCategory" 
+                class="form-control rounded-border" style="min-width: 10rem" 
+                asp-items="@Model.SearchCategories">
             <option value="">Please select what to search</option>
             <option value="Recipe">Recipe</option>
             <option value="Ingredient">Ingredient</option>
         </select>
-        <input type="text" asp-for="@Model.RecipeCriteria.SearchCriterion" class="form-control rounded-border mx-2" style="min-width: 30rem" placeholder="Recipe Name or Ingredient" />
+        <input type="text" asp-for="@Model.RecipeCriteria.SearchCriterion" 
+               class="form-control rounded-border mx-2" style="min-width: 30rem" placeholder="Recipe Name or Ingredient" />
         <button type="submit" class="btn btn-success mx-2">Search</button>
         <a asp-page="GetRecipes" class="btn btn-outline-dark mx-2 rounded-border">Clear Filter</a>
     </form>

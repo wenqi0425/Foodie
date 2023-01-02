@@ -19,6 +19,8 @@ namespace Foodie.Services.EFServices
             message.To.Add(new MailboxAddress("", $"{email}"));
             message.Subject = $"{subject}";
 
+            Secret secret = new Secret();
+
             message.Body = new TextPart(TextFormat.Html)
             {
                 Text = $"{htmlMessage}"
@@ -37,7 +39,7 @@ namespace Foodie.Services.EFServices
                 }
 
                 // SMTP authentication
-                client.Authenticate("foodieDK@outlook.com", "MyTest123!");
+                client.Authenticate("foodieDK@outlook.com", secret.Password);
 
                 client.Send(message);
                 client.Disconnect(true);

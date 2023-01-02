@@ -134,13 +134,22 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
                 // for existed items. user may updat them from frontend, fx: delete it, or re-modify amount; on such a case, we need update its db entry. 
                 updateIngredientList(new List<RecipeItem>(recipeItemsExisted), newItems, _recipeItemService);
 
+                //foreach (RecipeItem item in recipeItemsExisted)
+                //{
+                //    if (item.Name.Equals(RecipeItem1.Name)) { updateIngredientAmount(item, RecipeItem1, _recipeItemService); continue; }
+                //    if (item.Name.Equals(RecipeItem2.Name)) { updateIngredientAmount(item, RecipeItem2, _recipeItemService); continue; }
+                //    if (item.Name.Equals(RecipeItem3.Name)) { updateIngredientAmount(item, RecipeItem3, _recipeItemService); continue; }
+                //    if (item.Name.Equals(RecipeItem4.Name)) { updateIngredientAmount(item, RecipeItem4, _recipeItemService); continue; }
+                //    if (item.Name.Equals(RecipeItem5.Name)) { updateIngredientAmount(item, RecipeItem5, _recipeItemService); continue; }
+                //}
+
                 foreach (RecipeItem item in recipeItemsExisted)
                 {
-                    if (item.Name.Equals(RecipeItem1.Name)) { updateIngredientAmount(item, RecipeItem1, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem2.Name)) { updateIngredientAmount(item, RecipeItem2, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem3.Name)) { updateIngredientAmount(item, RecipeItem3, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem4.Name)) { updateIngredientAmount(item, RecipeItem4, _recipeItemService); continue; }
-                    if (item.Name.Equals(RecipeItem5.Name)) { updateIngredientAmount(item, RecipeItem5, _recipeItemService); continue; }
+                    if (item.Id.Equals(RecipeItem1.Id)) { updateIngredientAmount(item, RecipeItem1, _recipeItemService); continue; }
+                    if (item.Id.Equals(RecipeItem2.Id)) { updateIngredientAmount(item, RecipeItem2, _recipeItemService); continue; }
+                    if (item.Id.Equals(RecipeItem3.Id)) { updateIngredientAmount(item, RecipeItem3, _recipeItemService); continue; }
+                    if (item.Id.Equals(RecipeItem4.Id)) { updateIngredientAmount(item, RecipeItem4, _recipeItemService); continue; }
+                    if (item.Id.Equals(RecipeItem5.Id)) { updateIngredientAmount(item, RecipeItem5, _recipeItemService); continue; }
                 }
 
                 // existed item names
@@ -193,7 +202,8 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
                 {
                     recipeItemService.DeleteRecipeItem(oldItems[i]); continue;
                 }
-                if (!itemsForEditRefToPesisted[i].Name.Equals(oldItems[i].Name))
+                //if (!itemsForEditRefToPesisted[i].Name.Equals(oldItems[i].Name))
+                if (!itemsForEditRefToPesisted[i].Id.Equals(oldItems[i].Id))
                 {
                     oldItems[i].Name = itemsForEditRefToPesisted[i].Name;
                     oldItems[i].Amount = itemsForEditRefToPesisted[i].Amount == null ? "" : itemsForEditRefToPesisted[i].Amount;

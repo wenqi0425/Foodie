@@ -37,7 +37,7 @@ namespace Foodie.Pages.Recipes
             }
         }
 
-        // Code before reuse
+        #region Code before reuse
         /*
         private IRecipeService _recipeService;
         private IRecipeItemService _recipeItemService;
@@ -73,5 +73,6 @@ namespace Foodie.Pages.Recipes
                 Recipes = _recipeService.GetAllRecipes().ToList();
             }
         }*/
+        #endregion
     }
 }
