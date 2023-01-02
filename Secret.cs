@@ -4,7 +4,7 @@ namespace Foodie
 {
     public class Secret
     {
-        private string _password = "MyTest123!";
+        private string _password = "Foodie1234!";
         public string Password   // property
         {
             get { return _password; }   // get method
