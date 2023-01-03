@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Secrets files	to keep password of Foodie Admin email
-Secrets.cs
+Secret.cs
 
 # User-specific files
 *.rsuser
