@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Secrets files	to keep password of Foodie Admin email
-Secret.cs
+/Secret.cs
 
 # User-specific files
 *.rsuser
@@ -364,4 +364,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Secret.cs
+
