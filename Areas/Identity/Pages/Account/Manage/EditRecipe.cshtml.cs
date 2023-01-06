@@ -1,6 +1,5 @@
 using Foodie.Models;
 using Foodie.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -24,18 +23,15 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public RecipeItem RecipeItem4 { get; set; }
         public RecipeItem RecipeItem5 { get; set; }
 
-        private UserManager<AppUser> _manager;
         private IRecipeService _recipeService;
         private IRecipeItemService _recipeItemService;
 
         public IEnumerable<RecipeItem> RecipeItemsOfOneRecipe { get; set; }
 
-        public EditRecipeModel(UserManager<AppUser> manager, IRecipeService recipeService,
-            IRecipeItemService recipeItemService)
+        public EditRecipeModel(IRecipeService recipeService, IRecipeItemService recipeItemService)
         {
             _recipeService = recipeService;
             _recipeItemService = recipeItemService;
-            _manager = manager;
         }
         public IActionResult OnGet(int recipeId)
         {
