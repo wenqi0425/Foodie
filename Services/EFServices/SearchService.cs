@@ -16,7 +16,7 @@ namespace Foodie.Services.EFServices
             _recipeService = recipeService;
         }
 
-        public IEnumerable<Recipe> SearchRecipesByCriteria(RecipeCriteriaModel RecipeCriteria)            
+        public IEnumerable<Recipe> SearchRecipesByCriteria(RecipeCriteria RecipeCriteria)            
         {
             IEnumerable<Recipe> Recipes;
 

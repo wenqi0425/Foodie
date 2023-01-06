@@ -22,7 +22,7 @@ namespace Foodie.Pages.Recipes
         public string ScreenMessage { get; set; }
         public SelectList SearchCategories { get; set; }
 
-        [BindProperty(SupportsGet = true)] public RecipeCriteriaModel RecipeCriteria { get; set; } = new RecipeCriteriaModel();
+        [BindProperty(SupportsGet = true)] public RecipeCriteria RecipeCriteria { get; set; } = new RecipeCriteria();
 
         public void OnGet()
         {

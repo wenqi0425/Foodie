@@ -27,7 +27,7 @@ namespace Foodie.Pages
         public SelectList SearchCategories { get; set; }
 
         [BindProperty]
-        public RecipeCriteriaModel RecipeCriteria { get; set; } = new RecipeCriteriaModel();
+        public RecipeCriteria RecipeCriteria { get; set; } = new RecipeCriteria();
 
         public IActionResult OnPost()
         {

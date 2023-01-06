@@ -7,6 +7,6 @@ namespace Foodie.Services.Interfaces
     public interface ISearchService
     {
         //IEnumerable<Recipe> SearchRecipesByCriteria(string category, string criteria);
-        IEnumerable<Recipe> SearchRecipesByCriteria(RecipeCriteriaModel RecipeCriteria);
+        IEnumerable<Recipe> SearchRecipesByCriteria(RecipeCriteria RecipeCriteria);
     }
 }
