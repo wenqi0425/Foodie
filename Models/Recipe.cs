@@ -31,6 +31,6 @@ namespace Foodie.Models
 
         // Navigation Properties
         public AppUser User { get; set; }
-        public ICollection<RecipeItem> RecipeItems { get; set; }
+        public IEnumerable<RecipeItem> RecipeItems { get; set; }
     }
 }
