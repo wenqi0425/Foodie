@@ -7,7 +7,9 @@
 
 <div class="container">
     <h1>Recipes</h1>
-    <h5 style="margin-top: 3vh">Note: If you want to check all recipes, please clear filter. </h5>
+    <br />
+    <h7 style="color:blue">Note: If you want to check all recipes, please clear filter. </h7>
+
     <!-- Search  -->
     <form class="form-inline" method="get" style="margin-top: 3vh">
         <select asp-for="@Model.RecipeCriteria.SearchCategory" 
@@ -22,12 +24,6 @@
         <button type="submit" class="btn btn-success mx-2">Search</button>
         <a asp-page="GetRecipes" class="btn btn-outline-dark mx-2 rounded-border">Clear Filter</a>
     </form>
-
-    @*<form class="form-inline" method="get" style="margin-top: 3vh">
-    <input type="text" asp-for="@Model.Search.RecipeName" class="form-control rounded-border mx-2" style="min-width: 30rem" placeholder="Recipe Name" />
-    <input type="text" asp-for="@Model.Search.Ingredient" class="form-control rounded-border" style="min-width: 30rem" placeholder="Ingredient" />
-    <button type="submit" class="btn btn-success mx-2">Search</button>
-    </form>*@
 </div>
 <br />
 

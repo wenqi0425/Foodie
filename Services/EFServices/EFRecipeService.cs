@@ -1,9 +1,5 @@
 ﻿using Foodie.Models;
-using Foodie.Pages.Recipes;
 using Foodie.Services.Interfaces;
-
-using Microsoft.EntityFrameworkCore;
-
 using System.Collections.Generic;
 using System.Linq;
 

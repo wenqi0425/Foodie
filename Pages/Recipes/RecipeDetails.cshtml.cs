@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Foodie.Models;
 using Foodie.Services.Interfaces;
 
@@ -32,7 +29,7 @@ namespace Foodie.Pages.Recipes
         public RecipeItem RecipeItem4 { get; set; }
         public RecipeItem RecipeItem5 { get; set; }
 
-        public async Task OnGetAsync(int recipeId) // must be the same as the asp-route-recipeId
+        public void OnGet(int recipeId) // asp-route-recipeId
         {
             Recipe = _recipeService.GetRecipeById(recipeId);
             RecipeItems = _recipeItemService.GetRecipeItemsByRecipeId(recipeId).ToList();

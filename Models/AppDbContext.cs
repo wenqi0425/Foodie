@@ -20,14 +20,9 @@ namespace Foodie.Models
         {
 
         }
-
-        //  only derived class can visit it
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);            
         }
-
-        //  only derived class can visit it
-        // public DbSet<Foodie.Models.Wrapper> Wrapper { get; set; }
     }
 }

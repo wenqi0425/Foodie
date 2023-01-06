@@ -1,14 +1,10 @@
 using Foodie.Models;
-using Foodie.Services.EFServices;
 using Foodie.Services.Interfaces;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
 {
@@ -35,17 +31,10 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public RecipeItem RecipeItem4 { get; set; }
         public RecipeItem RecipeItem5 { get; set; }
 
-        //public IActionResult OnGetAsync(int recipeId)
-        //{
-        //    Recipe = _recipeService.GetRecipeById(recipeId);
-        //    return Page();
-        //}
-
-        public async Task OnGetAsync(int recipeId) // must be the same as the asp-route-recipeId
+        public void OnGet(int recipeId) // asp-route-recipeId
         {
             Recipe = _recipeService.GetRecipeById(recipeId);
             RecipeItems = _recipeItemService.GetRecipeItemsByRecipeId(recipeId).ToList();
-            //return Page();
         }
 
         public IActionResult OnPost(Recipe recipe)

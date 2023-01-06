@@ -1,5 +1,6 @@
 ﻿namespace Foodie.Models
 {
+    // reuse in the search function
     public class RecipeCriteriaModel
     {
         public string SearchCategory { get; set; }

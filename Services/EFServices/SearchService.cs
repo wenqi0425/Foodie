@@ -1,7 +1,5 @@
 ﻿using Foodie.Models;
-using Foodie.Pages;
 using Foodie.Services.Interfaces;
-
 using System.Collections.Generic;
 using System.Linq;
 

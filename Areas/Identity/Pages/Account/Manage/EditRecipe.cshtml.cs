@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Authorization;
-using Foodie.Pages.Recipes;
 using System.Linq;
 
 namespace Foodie.Areas.Identity.Pages.Account.Manage
@@ -68,7 +66,7 @@ namespace Foodie.Areas.Identity.Pages.Account.Manage
         public ActionResult OnPost()
         {
             // validate input item name followed by amount. 
-            //IsValid = ValidateItemAmountPairs();
+            // IsValid = ValidateItemAmountPairs();
 
             // we need to keep some current recipe states.
             var recipeId = Recipe.Id;

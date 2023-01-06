@@ -21,6 +21,8 @@
 <div class="col-md-4" style="min-width: 40rem">
     <form asp-action="Create" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <!--Change Recipe Name -->
         <table class="table">
             <tr>
                 <th>Change Recipe Name:</th>
@@ -28,11 +30,11 @@
             </tr>
             <span asp-validation-for="@Model.Recipe.Name" class="text-danger"></span>
         </table>
-        @*<div class="form-group">
-            <label asp-for="@Model.Recipe.Name" class="control-label"></label>
-            <input asp-for="@Model.Recipe.Name" class="form-control" />
-            <span asp-validation-for="@Model.Recipe.Name" class="text-danger"></span>
-        </div>*@
+        <br />
+
+        <!--Ingredient List-->
+        <h7 style="color:blue"> Note: The ingredient name can not be the same.</h7>
+        <p style="color:blue"> Please don't delete the first ingredient. </p>
 
         <table class="table">
             <thead>
@@ -70,13 +72,7 @@
             </tbody>
         </table>
 
-       @* @if (@Model.IsValid == false)
-        {
-            <div class="w-100 text-center mt-5">
-                <h5>@Model.ScreenMessage</h5>
-            </div>
-        }*@
-
+        <!--Cooking Steps, Introduction and Image -->
         <div class="form-group">
             <b><label asp-for="@Model.Recipe.CookingSteps" class="control-label"></label></b>
             <textarea asp-for="@Model.Recipe.CookingSteps" class="form-control rounded-border" rows="8"></textarea>
