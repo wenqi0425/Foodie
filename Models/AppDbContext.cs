@@ -20,6 +20,7 @@ namespace Foodie.Models
         {
 
         }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);            
