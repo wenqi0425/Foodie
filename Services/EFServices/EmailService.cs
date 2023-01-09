@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Net.Mail;
 using System;
 using System.Threading.Tasks;
 using MimeKit;
 using MimeKit.Text;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 
 namespace Foodie.Services.EFServices
